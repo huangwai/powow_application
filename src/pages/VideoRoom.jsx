@@ -1,7 +1,8 @@
+import HomeButton from "../components/HomeButton.jsx";
 function VideoRoom(){
     return(
         <div id ="videoRoomPage">
-            <p>Video Room Page Here</p>
+            <p>Video Room where all users are</p>
         </div>
     )
 }

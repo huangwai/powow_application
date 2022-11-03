@@ -1,7 +1,9 @@
 import { Outlet, Link } from "react-router-dom";
+import HomeButton from "./HomeButton.jsx";
 const Layout = () => {
     return (
         <>
+            <HomeButton/>
             <nav>
                 <ul>
                     <li>

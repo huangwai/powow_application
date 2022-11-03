@@ -1,3 +1,4 @@
+import HomeButton from "../components/HomeButton.jsx";
 function ChatRoom(){
     return(
         <div id ="chatRoomPage">

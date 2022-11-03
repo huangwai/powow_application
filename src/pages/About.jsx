@@ -1,3 +1,4 @@
+import HomeButton from "../components/HomeButton.jsx";
 function About(){
     return(
         <div id ="aboutPage">
