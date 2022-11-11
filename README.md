@@ -1,3 +1,3 @@
-# powow_application
+# powow application
 
 CS4704 Capstone Project
