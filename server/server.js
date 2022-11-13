@@ -43,8 +43,8 @@ io.on('connection', (socket) => {
   //send message
   socket.on('sendMessage', (msgData) => {
     //emit message to everyone listening in same room
-    socket.to(msgData.roomId).emit('receivedMessage', msgData);
-    console.log(`sent message ${msgData}`);
+    socket.to(msgData.room).emit('receivedMessage', msgData);
+    console.log(`sent message ${JSON.stringify(msgData)}`);
   });
   //disconnect socket
   socket.on('disconnect', () => {
