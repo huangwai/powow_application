@@ -1,7 +1,7 @@
 {
   "name": "chatroom",
   "scripts": {
-    "start": "nodemon server"
+    "dev": "nodemon server"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
