@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { VideoRoom } from '../components/VideoRoom';
+import { Button, Form } from "react-bootstrap";
 /*
 Join Room page component
  */
@@ -8,20 +9,13 @@ function JoinRoom(){
 
   return (
     <div className="JoinRoom">
-      {!joined && (
-        <button onClick={() => setJoined(true)}>
-          Join Room
-        </button>
-      )}
-
-      {joined && (
-        <>
-          <button onClick={() => setJoined(false)}>
-            To Lobby
-          </button>
-          <VideoRoom />
-        </>
-      )}
+      <Form>
+          <Form.Group className="mb-3" controlId="name">
+              <Form.Label>Room ID</Form.Label>
+              <Form.Control type="text" placeholder="Enter Room ID" />
+          </Form.Group>
+      </Form>
+      <Button variant="dark">Join Room</Button>
     </div>
   );
 }

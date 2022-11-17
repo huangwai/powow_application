@@ -1,52 +1,24 @@
-// import Button from "../components/Button.jsx";
-import {useNavigate} from "react-router-dom";
-import React from "react";
-
+import { useState } from 'react';
+import { VideoRoom } from '../components/VideoRoom';
+import { Button } from 'react-bootstrap';
 /*
-Button to navigate to Join Room Page Component
+Join Room page component
  */
-function Button(){
-    const navigate = useNavigate();
-
-    const roomButton = () => {
-        navigate('/joinRoom');
-    }
-    return(
-        <div id = "buttons">
-            <button onClick={roomButton}> Join Room</button>
-        </div>
-    )
-
-
-}
-
-/*
-Button to navigate to Join Room Page Component
- */
-function RandomChatButton(){
-    const navigate = useNavigate();
-
-    const roomButton = () => {
-        navigate('/chatRoom');
-    }
-    return(
-        <div id = "buttons">
-            <button onClick={roomButton}> Random Chat</button>
-        </div>
-    )
-
-
-}
-
 function Home(){
-    return(
-        <div id ="homePage">
-            {/*<h1>POWOW</h1>*/}
-            <p>HOME PAGE HERE</p>
-            <Button/>
-            <RandomChatButton/>
+    const [joined, setJoined] = useState(false);
 
-        </div>
-    )
+  return (
+    <div className="Home">
+      {!joined && (
+        <Button variant="secondary" onClick={() => setJoined(true)}>Random Room</Button>
+      )}
+
+      {joined && (
+        <>
+          <VideoRoom />
+        </>
+      )}
+    </div>
+  );
 }
 export default Home

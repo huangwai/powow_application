@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import AgoraRTC from 'agora-rtc-sdk-ng';
 import { VideoPlayer } from './VideoPlayer';
+import {ChatRoom} from './ChatRoom';
+import io from 'socket.io-client';
+
+const socket = io.connect('http://localhost:3001');
+//const uuid = require("uuid/v4")
 
 const APP_ID = '0bb291f858984709810afc67fd472532';
-const TOKEN = '007eJxTYOD7sO31i6savrMCJgY90v5fvLxv3Y7tsgJpGy+lStrafTqowGCQlGRkaZhmYWphaWFibmBpYWiQmJZsZp6WYmJuZGpsFNFbltwQyMhQYZrFwAiFID4LQ0lqcQkDAwCquB/E'
+const TOKEN = '007eJxTYHDwLEnfe+2ivK6HpDDrw2fnEw+s098mEZ9TICIafW2dX4ICg0FSkpGlYZqFqYWlhYm5gaWFoUFiWrKZeVqKibmRqbFR5dqy5IZARgYtaUdmRgYIBPFZGEpSi0sYGACJThwm'
 const CHANNEL = 'test';
 
 const client = AgoraRTC.createClient({
@@ -39,7 +44,7 @@ export const VideoRoom = () => {
 
     client
       .join(APP_ID, CHANNEL, TOKEN, null)
-      .then((uid) =>
+      .then((uid) => 
         Promise.all([
           AgoraRTC.createMicrophoneAndCameraTracks(),
           uid,
@@ -84,6 +89,7 @@ export const VideoRoom = () => {
           <VideoPlayer key={user.uid} user={user} />
         ))}
       </div>
+      <ChatRoom socket={socket} />
     </div>
   );
 };

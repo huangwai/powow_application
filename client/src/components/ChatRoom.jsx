@@ -1,6 +1,5 @@
-import HomeButton from '../components/HomeButton.jsx';
 import { useState, useEffect } from 'react';
-const ChatRoom = (props) => {
+export const ChatRoom = (props) => {
   const [userName, setUsername] = useState('');
   const [roomId, setRoomId] = useState('');
   const [message, setMessage] = useState('');
@@ -45,7 +44,7 @@ const ChatRoom = (props) => {
 
   return (
     <div id="chatRoomPage">
-      <p>Chat Room Page Here</p>
+      <p>Chat</p>
       {!joinedRoom ? (
         <div className="joinContainer">
           <input
@@ -90,4 +89,3 @@ const ChatRoom = (props) => {
     </div>
   );
 };
-export default ChatRoom;
