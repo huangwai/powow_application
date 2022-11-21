@@ -1,5 +1,7 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
-export const ChatRoom = (props) => {
+import PropTypes from 'prop-types';
+export const ChatRoom = props => {
   const [userName, setUsername] = useState('');
   const [roomId, setRoomId] = useState('');
   const [message, setMessage] = useState('');
@@ -28,7 +30,7 @@ export const ChatRoom = (props) => {
       console.log('sending', msgData);
       await socket.emit('sendMessage', msgData);
       //add message to message list
-      setAllMessages((prev) => [...prev, msgData]);
+      setAllMessages(prev => [...prev, msgData]);
       //empties text box
       setMessage('');
     }
@@ -36,11 +38,15 @@ export const ChatRoom = (props) => {
 
   useEffect(() => {
     //listening for new messages
-    socket.on('receivedMessage', (msgData) => {
+    socket.on('receivedMessage', msgData => {
       console.log('received message', msgData);
-      setAllMessages((prev) => [...prev, msgData]);
+      setAllMessages(prev => [...prev, msgData]);
     });
   }, [socket]);
+
+  ChatRoom.propTypes = {
+    socket: PropTypes.object
+  };
 
   return (
     <div id="chatRoomPage">
@@ -50,14 +56,14 @@ export const ChatRoom = (props) => {
           <input
             type="text"
             placeholder="name"
-            onChange={(e) => {
+            onChange={e => {
               setUsername(e.target.value);
             }}
           />
           <input
             type="text"
             placeholder="room id"
-            onChange={(e) => {
+            onChange={e => {
               setRoomId(e.target.value);
             }}
           />
@@ -79,9 +85,10 @@ export const ChatRoom = (props) => {
               type="text"
               value={message}
               placeholder="send message"
-              onChange={(e) => {
+              onChange={e => {
                 setMessage(e.target.value);
-              }}></input>
+              }}
+            ></input>
             <button onClick={sendMessage}>&#9658;</button>
           </div>
         </div>

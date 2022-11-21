@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import AgoraRTC from 'agora-rtc-sdk-ng';
 import { VideoPlayer } from './VideoPlayer';
-import {ChatRoom} from './ChatRoom';
+import { ChatRoom } from './ChatRoom';
 import io from 'socket.io-client';
 
 const socket = io.connect('http://localhost:3001');
 //const uuid = require("uuid/v4")
 
 const APP_ID = '0bb291f858984709810afc67fd472532';
-const TOKEN = '007eJxTYHDwLEnfe+2ivK6HpDDrw2fnEw+s098mEZ9TICIafW2dX4ICg0FSkpGlYZqFqYWlhYm5gaWFoUFiWrKZeVqKibmRqbFR5dqy5IZARgYtaUdmRgYIBPFZGEpSi0sYGACJThwm'
+const TOKEN =
+  '007eJxTYHDwLEnfe+2ivK6HpDDrw2fnEw+s098mEZ9TICIafW2dX4ICg0FSkpGlYZqFqYWlhYm5gaWFoUFiWrKZeVqKibmRqbFR5dqy5IZARgYtaUdmRgYIBPFZGEpSi0sYGACJThwm';
 const CHANNEL = 'test';
 
 const client = AgoraRTC.createClient({
   mode: 'rtc',
-  codec: 'vp8',
+  codec: 'vp8'
 });
 
 export const VideoRoom = () => {
@@ -24,7 +25,7 @@ export const VideoRoom = () => {
     await client.subscribe(user, mediaType);
 
     if (mediaType === 'video') {
-      setUsers((previousUsers) => [...previousUsers, user]);
+      setUsers(previousUsers => [...previousUsers, user]);
     }
 
     if (mediaType === 'audio') {
@@ -32,10 +33,8 @@ export const VideoRoom = () => {
     }
   };
 
-  const handleUserLeft = (user) => {
-    setUsers((previousUsers) =>
-      previousUsers.filter((u) => u.uid !== user.uid)
-    );
+  const handleUserLeft = user => {
+    setUsers(previousUsers => previousUsers.filter(u => u.uid !== user.uid));
   };
 
   useEffect(() => {
@@ -44,22 +43,17 @@ export const VideoRoom = () => {
 
     client
       .join(APP_ID, CHANNEL, TOKEN, null)
-      .then((uid) => 
-        Promise.all([
-          AgoraRTC.createMicrophoneAndCameraTracks(),
-          uid,
-        ])
-      )
+      .then(uid => Promise.all([AgoraRTC.createMicrophoneAndCameraTracks(), uid]))
       .then(([tracks, uid]) => {
         const [audioTrack, videoTrack] = tracks;
         setLocalTracks(tracks);
-        setUsers((previousUsers) => [
+        setUsers(previousUsers => [
           ...previousUsers,
           {
             uid,
             videoTrack,
-            audioTrack,
-          },
+            audioTrack
+          }
         ]);
         client.publish(tracks);
       });
@@ -76,16 +70,14 @@ export const VideoRoom = () => {
   }, []);
 
   return (
-    <div
-      style={{ display: 'flex', justifyContent: 'center' }}
-    >
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(2, 200px)',
+          gridTemplateColumns: 'repeat(2, 200px)'
         }}
       >
-        {users.map((user) => (
+        {users.map(user => (
           <VideoPlayer key={user.uid} user={user} />
         ))}
       </div>
