@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const http = require('http');
 const { Server } = require('socket.io');
 const app = express();
@@ -26,22 +26,22 @@ mongoose
 const io = new Server(server, {
   cors: {
     // react front end must run on port 3000
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
     methods: ['GET', 'POST']
   }
 });
 
 //listening to connection
-io.on('connection', (socket) => {
+io.on('connection', socket => {
   console.log(`Connected: ${socket.id}`);
 
   //join room based on id
-  socket.on('joinRoom', (roomId) => {
+  socket.on('joinRoom', roomId => {
     socket.join(roomId);
     console.log(`User ${socket.id} joined room ${roomId}`);
   });
   //send message
-  socket.on('sendMessage', (msgData) => {
+  socket.on('sendMessage', msgData => {
     //emit message to everyone listening in same room
     socket.to(msgData.room).emit('receivedMessage', msgData);
     console.log(`sent message ${JSON.stringify(msgData)}`);
