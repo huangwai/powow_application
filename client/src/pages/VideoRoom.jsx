@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import AgoraRTC from 'agora-rtc-sdk-ng';
-import { VideoPlayer } from './VideoPlayer';
-import { ChatRoom } from './ChatRoom';
-import io from 'socket.io-client';
+import { VideoPlayer } from '../components/VideoPlayer';
+import { ChatRoom } from '../components/ChatRoom';
+import PropTypes from 'prop-types';
 
-const socket = io.connect('http://localhost:3001');
 //const uuid = require("uuid/v4")
 
 const APP_ID = '0bb291f858984709810afc67fd472532';
@@ -17,7 +16,7 @@ const client = AgoraRTC.createClient({
   codec: 'vp8'
 });
 
-export const VideoRoom = () => {
+export const VideoRoom = props => {
   const [users, setUsers] = useState([]);
   const [localTracks, setLocalTracks] = useState([]);
 
@@ -68,7 +67,11 @@ export const VideoRoom = () => {
       client.unpublish(tracks).then(() => client.leave());
     };
   }, []);
-
+  VideoRoom.propTypes = {
+    socket: PropTypes.object,
+    roomId: PropTypes.string,
+    userName: PropTypes.string
+  };
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <div
@@ -81,7 +84,7 @@ export const VideoRoom = () => {
           <VideoPlayer key={user.uid} user={user} />
         ))}
       </div>
-      <ChatRoom socket={socket} />
+      <ChatRoom socket={props.socket} userName={props.userName} roomId={props.roomId} />
     </div>
   );
 };

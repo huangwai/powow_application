@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { VideoRoom } from '../components/VideoRoom';
+import { VideoRoom } from './VideoRoom';
 import { Button } from 'react-bootstrap';
 /*
 Join Room page component

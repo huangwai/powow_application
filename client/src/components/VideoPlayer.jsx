@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-const VideoPlayer = ({ user }) => {
+export const VideoPlayer = ({ user }) => {
   const ref = useRef();
 
   useEffect(() => {
@@ -19,5 +19,3 @@ const VideoPlayer = ({ user }) => {
     </div>
   );
 };
-
-export default VideoPlayer;

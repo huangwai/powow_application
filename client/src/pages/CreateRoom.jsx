@@ -1,26 +1,57 @@
 //import HomeButton from '../components/HomeButton.jsx';
 import React from 'react';
-import { DropdownButton, Dropdown, Button, Form } from 'react-bootstrap';
+import { useState } from 'react';
+import { VideoRoom } from './VideoRoom';
+import PropTypes from 'prop-types';
+import { Button } from 'react-bootstrap';
 
-function CreateRoom() {
+const CreateRoom = props => {
+  const [createdRoom, setCreatedRoom] = useState(false);
+  const [userName, setUsername] = useState('');
+  const [roomId, setRoomId] = useState('');
+  const socket = props.socket;
+
+  const joinRoom = () => {
+    if (userName !== '' && roomId !== '') {
+      //pass roomId to backend socket
+      console.log(`joined room userName: ${userName}, roomId: ${roomId}`);
+      socket.emit('joinRoom', roomId);
+      setCreatedRoom(true);
+    }
+  };
+  CreateRoom.propTypes = {
+    socket: PropTypes.object
+  };
   return (
-    <div id="createRoomPage">
-      <Form>
-        <Form.Group className="mb-3" controlId="name">
-          <Form.Label>Room Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter Room Name" />
-        </Form.Group>
-      </Form>
-      <DropdownButton id="dropdown-basic-button" title="Room Size">
-        <Dropdown.Item>1</Dropdown.Item>
-        <Dropdown.Item>2</Dropdown.Item>
-        <Dropdown.Item>3</Dropdown.Item>
-        <Dropdown.Item>4</Dropdown.Item>
-        <Dropdown.Item>5</Dropdown.Item>
-        <Dropdown.Item>6</Dropdown.Item>
-      </DropdownButton>
-      <Button variant="dark">Create Room</Button>
-    </div>
+    <>
+      {!createdRoom ? (
+        <div className="joinContainer">
+          <p>Create room</p>
+          <input
+            type="text"
+            placeholder="name"
+            onChange={e => {
+              setUsername(e.target.value);
+            }}
+          />
+          <input
+            type="text"
+            placeholder="room id"
+            onChange={e => {
+              setRoomId(e.target.value);
+            }}
+          />
+          <Button onClick={joinRoom} variant="dark">
+            Create Room
+          </Button>
+        </div>
+      ) : (
+        <>
+          <p>Created room {roomId}</p>
+          <VideoRoom socket={socket} userName={userName} roomId={roomId}></VideoRoom>
+        </>
+      )}
+    </>
   );
-}
+};
 export default CreateRoom;

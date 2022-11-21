@@ -6,6 +6,9 @@ import Home from '../pages/Home';
 import JoinRoom from '../pages/JoinRoom';
 import CreateRoom from '../pages/CreateRoom';
 import About from '../pages/About';
+import io from 'socket.io-client';
+
+const socket = io.connect('http://localhost:3001');
 
 export default class Layout extends Component {
   render() {
@@ -35,8 +38,8 @@ export default class Layout extends Component {
         <div>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/createRoom" element={<CreateRoom />} />
-            <Route path="/joinRoom" element={<JoinRoom />} />
+            <Route path="/createRoom" element={<CreateRoom socket={socket} />} />
+            <Route path="/joinRoom" element={<JoinRoom socket={socket} />} />
             <Route path="/about" element={<About />} />
           </Routes>
         </div>

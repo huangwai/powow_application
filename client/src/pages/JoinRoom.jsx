@@ -1,23 +1,58 @@
-import { useState } from 'react';
-//import { VideoRoom } from '../components/VideoRoom';
 import React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { useState } from 'react';
+import { VideoRoom } from './VideoRoom';
+import { Button } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 /*
 Join Room page component
  */
-function JoinRoom() {
-  const [joined, setJoined] = useState(false);
+const JoinRoom = props => {
+  const [joinedRoom, setJoinedRoom] = useState(false);
+  const [userName, setUsername] = useState('');
+  const [roomId, setRoomId] = useState('');
+  const socket = props.socket;
 
+  const joinRoom = () => {
+    if (userName !== '' && roomId !== '') {
+      //pass roomId to backend socket
+      console.log(`joined room userName: ${userName}, roomId: ${roomId}`);
+      socket.emit('joinRoom', roomId);
+      setJoinedRoom(true);
+    }
+  };
+  JoinRoom.propTypes = {
+    socket: PropTypes.object
+  };
   return (
-    <div className="JoinRoom">
-      <Form>
-        <Form.Group className="mb-3" controlId="name">
-          <Form.Label>Room ID</Form.Label>
-          <Form.Control type="text" placeholder="Enter Room ID" />
-        </Form.Group>
-      </Form>
-      <Button variant="dark">Join Room</Button>
-    </div>
+    <>
+      {!joinedRoom ? (
+        <div className="joinContainer">
+          <p>Join room</p>
+          <input
+            type="text"
+            placeholder="name"
+            onChange={e => {
+              setUsername(e.target.value);
+            }}
+          />
+          <input
+            type="text"
+            placeholder="room id"
+            onChange={e => {
+              setRoomId(e.target.value);
+            }}
+          />
+          <Button onClick={joinRoom} variant="dark">
+            Join Room
+          </Button>
+        </div>
+      ) : (
+        <>
+          <p>Joined room {roomId}</p>
+          <VideoRoom socket={socket} userName={userName} roomId={roomId}></VideoRoom>
+        </>
+      )}
+    </>
   );
-}
+};
 export default JoinRoom;
