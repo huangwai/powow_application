@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import { VideoRoom } from './VideoRoom';
+//import { VideoRoom } from './VideoRoom';
+import { ChatRoom } from '../components/ChatRoom';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 /*
@@ -20,6 +21,7 @@ const JoinRoom = props => {
       setJoinedRoom(true);
     }
   };
+
   JoinRoom.propTypes = {
     socket: PropTypes.object
   };
@@ -49,7 +51,7 @@ const JoinRoom = props => {
       ) : (
         <>
           <p>Joined room {roomId}</p>
-          <VideoRoom socket={socket} userName={userName} roomId={roomId}></VideoRoom>
+          <ChatRoom socket={socket} userName={userName} roomId={roomId}></ChatRoom>
         </>
       )}
     </>

@@ -12,7 +12,7 @@ export const ChatRoom = props => {
       const msgData = {
         room: props.roomId,
         user: props.userName,
-        msg: message,
+        message: message,
         time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes()
       };
       console.log('sending', msgData);
@@ -32,6 +32,22 @@ export const ChatRoom = props => {
     });
   }, [socket]);
 
+  useEffect(() => {
+    // fetch persistent messages from db
+    const fetchMsg = async room => {
+      const url = `http://localhost:3001/room/${room}`;
+      const data = await fetch(url).then(res => {
+        //const contentType = res.headers.get('content-type');
+        if (res.ok) {
+          // && contentType === 'application/json') {
+          return res.json();
+        }
+      });
+      setAllMessages(data.messages);
+    };
+    fetchMsg(props.roomId);
+  }, []);
+
   ChatRoom.propTypes = {
     socket: PropTypes.object,
     roomId: PropTypes.string,
@@ -49,7 +65,7 @@ export const ChatRoom = props => {
         </div>
         <div className="body">
           {allMessages.map((message, index) => {
-            return <p key={index}>{`${message.user}: ${message.msg}`}</p>;
+            return <p key={index}>{`${message.user}: ${message.message}`}</p>;
           })}
         </div>
         <div className="footer">
