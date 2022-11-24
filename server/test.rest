@@ -3,3 +3,7 @@ GET http://localhost:3001/room
 ###
 
 GET http://localhost:3001/room/123
+
+###
+
+DELETE http://localhost:3001/room/1

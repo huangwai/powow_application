@@ -24,6 +24,13 @@ export const ChatRoom = props => {
     }
   };
 
+  // remove previous messages in db and client
+  const clearMessage = async () => {
+    const url = `http://localhost:3001/room/${props.roomId}`;
+    await fetch(url, { method: 'DELETE' });
+    setAllMessages([]);
+  };
+
   useEffect(() => {
     //listening for new messages
     socket.on('receivedMessage', msgData => {
@@ -36,13 +43,8 @@ export const ChatRoom = props => {
     // fetch persistent messages from db
     const fetchMsg = async room => {
       const url = `http://localhost:3001/room/${room}`;
-      const data = await fetch(url).then(res => {
-        //const contentType = res.headers.get('content-type');
-        if (res.ok) {
-          // && contentType === 'application/json') {
-          return res.json();
-        }
-      });
+      const res = await fetch(url, { method: 'GET' });
+      const data = await res.json();
       setAllMessages(data.messages);
     };
     fetchMsg(props.roomId);
@@ -62,10 +64,11 @@ export const ChatRoom = props => {
           <p>
             Room: {props.roomId} User: {props.userName}
           </p>
+          <button onClick={clearMessage}>Clear Message</button>
         </div>
         <div className="body">
           {allMessages.map((message, index) => {
-            return <p key={index}>{`${message.user}: ${message.message}`}</p>;
+            return <p key={index}>{`${message.user}: ${message.message} - ${message.time}`}</p>;
           })}
         </div>
         <div className="footer">
