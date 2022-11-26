@@ -8,17 +8,21 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
-import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import CloseIcon from '@mui/icons-material/Close';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import SendIcon from '@mui/icons-material/Send';
 import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
+import Collapse from '@mui/material/Collapse';
 import '../css/components/ChatRoom.css';
 
 export const ChatRoom = props => {
   const [message, setMessage] = useState('');
   const [allMessages, setAllMessages] = useState([]);
+  const [alert, setAlert] = useState(true);
   const socket = props.socket;
 
   //async to wait for message to be sent
@@ -41,9 +45,9 @@ export const ChatRoom = props => {
 
   // remove previous messages in db and client
   const clearMessage = async () => {
+    setAllMessages([]);
     const url = `http://localhost:3001/room/${props.roomId}`;
     await fetch(url, { method: 'DELETE' });
-    setAllMessages([]);
   };
 
   useEffect(() => {
@@ -63,6 +67,7 @@ export const ChatRoom = props => {
       setAllMessages(data.messages);
     };
     fetchMsg(props.roomId);
+    // successfully joined room
   }, []);
 
   ChatRoom.propTypes = {
@@ -86,6 +91,24 @@ export const ChatRoom = props => {
             <Button color="inherit" onClick={clearMessage} startIcon={<DeleteIcon />} />
           </Toolbar>
         </AppBar>
+        <Collapse in={alert}>
+          <Alert
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setAlert(false);
+                }}
+              >
+                <CloseIcon fontSize="inherit" />
+              </IconButton>
+            }
+          >
+            Successfully Joined!
+          </Alert>
+        </Collapse>
       </Box>
       <div className="chatContainer">
         <div className="body">
@@ -104,6 +127,13 @@ export const ChatRoom = props => {
                   </Box>
                 );
               } else {
+                if (index !== 0 && allMessages[index - 1].user === allMessages[index].user) {
+                  return (
+                    <div key={index}>
+                      <Chip sx={{ fontSize: 16, p: 1 }} variant="outlined" label={`${message.message}`} />
+                    </div>
+                  );
+                }
                 return (
                   <div key={index}>
                     <p className="messageHeader">{`${message.user} ${message.time}`}</p>
