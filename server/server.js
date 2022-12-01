@@ -27,10 +27,11 @@ mongoose
   .then(() => console.log(`Connected to MongoDB at ${process.env.MONGO_DB}`))
   .catch(error => console.log(error));
 
+const client = process.env.CLIENT_PORT.split(',');
 const io = new Server(server, {
   cors: {
-    // react front end must run on port 3000
-    origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+    // react front end must run on these ports
+    origin: client,
     methods: ['GET', 'POST']
   }
 });
