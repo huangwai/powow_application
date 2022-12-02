@@ -50,7 +50,6 @@ const JoinRoom = props => {
         </div>
       ) : (
         <>
-          <p>Joined room {roomId}</p>
           <ChatRoom socket={socket} userName={userName} roomId={roomId}></ChatRoom>
         </>
       )}
