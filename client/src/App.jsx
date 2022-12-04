@@ -11,8 +11,10 @@ import ContactForm from './components/ContactForm';
 import io from 'socket.io-client';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import GridTemplateColumns from './pages/Option';
+import GridTemplateColumns from './pages/ChatOptions';
 import Chat from '@mui/icons-material/Chat';
+import Footer from './components/Footer';
+import ComplexGrid from './pages/ChatOptions2';
 function App() {
   const socket = io.connect('http://localhost:3001');
 
@@ -33,8 +35,8 @@ function App() {
             <Route exact path="/*" element={<NoPage />} />
           </Routes>
         </Box>
-        
       </Box>
+      {/* <Footer/> */}
     </div>
   );
 }

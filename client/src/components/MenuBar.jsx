@@ -47,7 +47,7 @@ export const MenuBar = () => {
             {/* <FlutterDashIcon /> */}
             <MenuIcon/>
           </IconButton>
-          <Button onClick={() => navigate('/')} color="inherit" size="large" sx={{ flexGrow: 1 }}>
+          <Button onClick={() => navigate('/')} color="inherit" font-size = "40" sx={{ flexGrow: 1 }}>
             POWOW
           </Button>
           {/* <Header>The Solar System</Header> */}
@@ -84,7 +84,7 @@ export const MenuBar = () => {
             </ListItemButton>
           </ListItem>
           <ListItem key={'Chat'} disablePadding>
-            <ListItemButton>
+          <ListItemButton onClick={() => navigate('/chatOptions')}>
               <ListItemIcon>
                 <ChatIcon />
               </ListItemIcon>
@@ -92,7 +92,7 @@ export const MenuBar = () => {
             </ListItemButton>
           </ListItem>
 
-          <ListItem key={'Create Room'} disablePadding>
+          {/* <ListItem key={'Create Room'} disablePadding>
             <ListItemButton onClick={() => navigate('/createRoom')}>
               <ListItemIcon>
                 <GroupAddIcon />
@@ -108,7 +108,7 @@ export const MenuBar = () => {
               </ListItemIcon>
               <ListItemText primary={'Join Room'} />
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
 
           <ListItem key={'About'} disablePadding>
             <ListItemButton onClick={() => navigate('/about')}>
