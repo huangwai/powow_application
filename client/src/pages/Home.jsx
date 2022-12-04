@@ -7,6 +7,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import { ChatRoom } from '../components/ChatRoom';
 import '../css/pages/Home.css';
+import ContactForm from '../components/ContactForm';
 /*
 Join Room page component
  */
@@ -22,7 +23,7 @@ const Home = props => {
       <Box component="main" sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}>
         <Card sx={{ minWidth: 300, maxWidth: 300 }}>
           <CardContent>
-            <p>POWOW balhblahblhalb</p>
+            <p>POWOW </p>
           </CardContent>
           <CardActions>
             <Button size="small">Learn More</Button>
@@ -40,6 +41,7 @@ const Home = props => {
           <ChatRoom socket={props.socket} userName={userName} roomId={'-1'} />
         </div>
       </Box>
+      {/* <ContactForm/> */}
     </div>
   );
 };

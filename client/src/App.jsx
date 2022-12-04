@@ -7,6 +7,7 @@ import CreateRoom from './pages/CreateRoom';
 import About from './pages/About';
 import NoPage from './pages/NoPage';
 import { MenuBar } from './components/MenuBar';
+import ContactForm from './components/ContactForm';
 import io from 'socket.io-client';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,6 +25,7 @@ function App() {
             <Route exact path="/createRoom" element={<CreateRoom socket={socket} />} />
             <Route exact path="/joinRoom" element={<JoinRoom socket={socket} />} />
             <Route exact path="/about" element={<About />} />
+            <Route exact path="/contact" element={<ContactForm />} />
             <Route exact path="/*" element={<NoPage />} />
           </Routes>
         </Box>

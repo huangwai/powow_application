@@ -22,6 +22,9 @@ import InfoIcon from '@mui/icons-material/Info';
 import FlutterDashIcon from '@mui/icons-material/FlutterDash';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ContactForm from './ContactForm';
+import MenuIcon from '@mui/icons-material/Menu';
+
 
 import { useNavigate } from 'react-router-dom';
 
@@ -31,6 +34,9 @@ export const MenuBar = () => {
 
   const handleDrawer = () => {
     open ? setOpen(false) : setOpen(true);
+
+    // const contacts = () => {
+    //   open ? setOpen(false) : setOpen(true);
   };
 
   return (
@@ -38,21 +44,24 @@ export const MenuBar = () => {
       <AppBar position="fixed" sx={{ zIndex: theme => theme.zIndex.drawer + 1, bgcolor: '#3949ab' }}>
         <Toolbar>
           <IconButton onClick={handleDrawer} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-            <FlutterDashIcon />
+            {/* <FlutterDashIcon /> */}
+            <MenuIcon/>
           </IconButton>
           <Button onClick={() => navigate('/')} color="inherit" size="large" sx={{ flexGrow: 1 }}>
             POWOW
           </Button>
+          {/* <Header>The Solar System</Header> */}
           <div />
-          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+          {/* Commented section below */}
+          {/* <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <EmailIcon />
-          </IconButton>
-          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+          </IconButton> */}
+          {/* <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <NotificationsIcon />
-          </IconButton>
-          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+          </IconButton> */}
+          {/* <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <AccountCircleIcon />
-          </IconButton>
+          </IconButton> */}
         </Toolbar>
       </AppBar>
       <Drawer
@@ -109,6 +118,16 @@ export const MenuBar = () => {
               <ListItemText primary={'About'} />
             </ListItemButton>
           </ListItem>
+
+          <ListItem key={'Contact'} disablePadding>
+            <ListItemButton onClick={() => navigate('/contact')}>
+              <ListItemIcon>
+                <EmailIcon />
+              </ListItemIcon>
+              <ListItemText primary={'Contact'} />
+            </ListItemButton>
+          </ListItem>
+
         </List>
       </Drawer>
     </div>
