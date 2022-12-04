@@ -6,7 +6,6 @@ function About() {
   return (
     <div id="aboutPage">
       <center>
-      <img src = "../images/powowlogo.png"></img>
         <h1 >About POWOW</h1>
         <h4>Online Chat Service</h4>
         <p>POWOW introduces users to an all new experience for chatting across the web.

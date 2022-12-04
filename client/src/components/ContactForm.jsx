@@ -25,7 +25,7 @@ export const ContactForm = () => {
   };
 
   return (
-      <div style={{display: 'flex', justifyContent: 'center', paddingTop: '200px'}}>
+      <div style={{display: 'flex', justifyContent: 'center', paddingTop: '100px'}}>
         <StyledContactForm>
         <h1>Contact Us</h1>
         <form ref={form} onSubmit={sendEmail}>

@@ -11,7 +11,8 @@ import ContactForm from './components/ContactForm';
 import io from 'socket.io-client';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import GridTemplateColumns from './pages/Option';
+import Chat from '@mui/icons-material/Chat';
 function App() {
   const socket = io.connect('http://localhost:3001');
 
@@ -19,16 +20,20 @@ function App() {
     <div className="App">
       <Box sx={{ display: 'flex' }}>
         <MenuBar />
+        {/* <Header/> */}
         <Box component="main" sx={{ flexGrow: 1, ml: 5, mr: 5, mt: 13, mb: 5 }}>
           <Routes>
             <Route exact path="/" element={<Home socket={socket} />} />
             <Route exact path="/createRoom" element={<CreateRoom socket={socket} />} />
             <Route exact path="/joinRoom" element={<JoinRoom socket={socket} />} />
             <Route exact path="/about" element={<About />} />
+            <Route exact path="/chatOptions" element={<GridTemplateColumns />} />
             <Route exact path="/contact" element={<ContactForm />} />
+            <Route exact path="/publicChat" element={<Chat />} />
             <Route exact path="/*" element={<NoPage />} />
           </Routes>
         </Box>
+        
       </Box>
     </div>
   );
