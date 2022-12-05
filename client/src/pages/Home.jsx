@@ -19,15 +19,15 @@ const Home = props => {
   };
   return (
     <div className="Home">
-      <Box component="main" sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}>
-        <Card sx={{ minWidth: 300, maxWidth: 400 }}>
+      <Box component="main" sx={{ flexGrow: 1, bgcolor: 'background.default', p: 10 }}>
+        <Card sx={{ minWidth: 300, maxWidth: 500}}>
           <CardContent>
             <h3>Connect across the world starting with POWOW </h3>
             <br></br>
             <p>Reconnect or Explore new conversations with friends accross the web.</p>
           </CardContent>
           <CardActions>
-            <Button size="small">Start exploring</Button>
+            <Button href="/chatOptions" size="small">Start exploring</Button>
           </CardActions>
         </Card>
         {/* <Card sx={{ minWidth: 300, maxWidth: 300 }}>
