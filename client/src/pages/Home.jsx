@@ -7,7 +7,6 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import { ChatRoom } from '../components/ChatRoom';
 import '../css/pages/Home.css';
-import ContactForm from '../components/ContactForm';
 /*
 Join Room page component
  */
@@ -21,22 +20,24 @@ const Home = props => {
   return (
     <div className="Home">
       <Box component="main" sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}>
-        <Card sx={{ minWidth: 300, maxWidth: 300 }}>
+        <Card sx={{ minWidth: 300, maxWidth: 400 }}>
           <CardContent>
-            <p>POWOW </p>
+            <h3>Connect across the world starting with POWOW </h3>
+            <br></br>
+            <p>Reconnect or Explore new conversations with friends accross the web.</p>
           </CardContent>
           <CardActions>
-            <Button size="small">Learn More</Button>
+            <Button size="small">Start exploring</Button>
           </CardActions>
         </Card>
-        <Card sx={{ minWidth: 300, maxWidth: 300 }}>
+        {/* <Card sx={{ minWidth: 300, maxWidth: 300 }}>
           <CardContent>
             <p>Start connecting</p>
           </CardContent>
           <CardActions>
             <Button size="small">Join random lobby</Button>
           </CardActions>
-        </Card>
+        </Card> */}
         <div id="globalChat">
           <ChatRoom socket={props.socket} userName={userName} roomId={'-1'} />
         </div>

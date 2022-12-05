@@ -130,6 +130,7 @@ export const MenuBar = () => {
 
         </List>
       </Drawer>
+      
     </div>
   );
 };
