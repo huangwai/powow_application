@@ -10,8 +10,7 @@ width: 100%;
 
 @media (max-width: 5000px) {
 	padding: 70px 30px;
-}
-`;
+}`;
 
 export const Container = styled.div`
 	display: flex;
