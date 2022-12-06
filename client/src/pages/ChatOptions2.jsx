@@ -23,61 +23,67 @@ export default function ComplexGrid() {
   const navigate = useNavigate();
   return (
     <Stack direction="row" spacing={15} justifyContent="center" alignItems="center">
-      <Card sx={{ bgcolor: 'red', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 1000 }} color="success">
+      <Card sx={{ bgcolor: '#0466C8', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 1000 }} color="success">
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
-          <CardContent>
-            <h3>Create a Room</h3>
-            <Typography variant="body2" gutterBottom>
+          <CardContent >
+          <Typography sx={{ fontWeight: 'bold' }} variant="h4" color = "white" gutterBottom>
+            Create a Room
+            </Typography>
+            <Typography variant="body2" color = "white" gutterBottom>
               Allows users to create their own room
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="white">
               Share your ID for others to join
             </Typography>
           </CardContent>
         </Box>
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ mb: 10 }}>
           <CardActions>
-            <Button size="large" variant="outlined" onClick={() => navigate('/createRoom')}>
+            <Button sx = {{backgroundColor: "white",fontWeight: 'bold'}} size="large" variant="outlined" onClick={() => navigate('/createRoom')}>
               Create
             </Button>
           </CardActions>
         </Box>
       </Card>
-      <Card sx={{ bgcolor: 'red', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 500 }}>
+      <Card sx={{ bgcolor: '#0466C8', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 500 }}>
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
           <CardContent>
-            <h3>Join a Room</h3>
-            <Typography variant="body2" gutterBottom>
+          <Typography  sx={{ fontWeight: 'bold' }} variant="h4" color = "white" gutterBottom>
+            Join a Room
+            </Typography>
+            <Typography variant="body2" color="white" gutterBottom>
               Allows users to join other users room
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="white">
               Join others by entering room ID
             </Typography>
           </CardContent>
         </Box>
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
           <CardActions>
-            <Button size="large" variant="outlined" onClick={() => navigate('/joinRoom')}>
+            <Button sx = {{backgroundColor: "white",fontWeight: 'bold'}}size="large" variant="outlined" onClick={() => navigate('/joinRoom')}>
               Join
             </Button>
           </CardActions>
         </Box>
       </Card>
-      <Card sx={{ bgcolor: 'red', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 500 }}>
+      <Card sx={{ bgcolor: '#0466C8', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 500 }}>
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
-          <CardContent>
-            <h3>Public Chat</h3>
-            <Typography variant="body2" gutterBottom>
+          <CardContent >
+          <Typography sx={{ fontWeight: 'bold' }} variant="h4" color = "white" gutterBottom>
+            Public Chat
+            </Typography>
+            <Typography variant="body2" color="white" gutterBottom>
               Allows users to chat with anyone
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="white">
               Anyone can join!
             </Typography>
           </CardContent>
         </Box>
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
           <CardActions>
-            <Button size="large" variant="outlined" onClick={() => navigate('/publicChat')}>
+            <Button sx = {{backgroundColor: "white",fontWeight: 'bold'}} size="large" variant="outlined" onClick={() => navigate('/publicChat')}>
               Explore
             </Button>
           </CardActions>

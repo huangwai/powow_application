@@ -7,6 +7,14 @@ import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import Stack from '@mui/material/Stack';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
 
 /*
 Join Room page component
@@ -62,7 +70,39 @@ const JoinRoom = props => {
           There was no room with the id
         </Alert>
       </Collapse>
-      <p>Join room</p>
+      <Stack direction="row" spacing={15} justifyContent="center" alignItems="center">
+      <Card sx={{ bgcolor: '#0466C8' }} color="success">
+        <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
+          <CardContent >
+          <Typography variant="h4" color = "white" gutterBottom>
+            Join room
+            </Typography>
+            <TextField sx={{ input: { color: 'white' } }} id="outlined-basic" label="Name" variant="outlined" 
+           type="text"
+           placeholder="name"
+           onChange={e => {
+             setUsername(e.target.value);
+           }}
+        />
+            <TextField sx={{ input: { color: 'white' } }} id="outlined-basic" label="Room ID" variant="outlined"
+          type="text"
+          placeholder="room id"
+          onChange={e => {
+            setRoomId(e.target.value);
+          }}
+        />
+          </CardContent>
+        </Box>
+        <Box display="flex" justifyContent="center" alignItems="center" sx={{ mb: 10 }}>
+          <CardActions>
+          <Button sx = {{backgroundColor: "white",fontWeight: 'bold'}} size="large" variant="outlined" onClick={joinRoom}>
+            Join Room
+            </Button>
+          </CardActions>
+        </Box>
+      </Card>
+      </Stack>
+      {/* <p>Join room</p>
       <input
         type="text"
         placeholder="name"
@@ -79,7 +119,7 @@ const JoinRoom = props => {
       />
       <Button onClick={joinRoom} variant="contained">
         Join Room
-      </Button>
+      </Button> */}
     </div>
   );
 };
