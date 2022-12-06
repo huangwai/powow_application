@@ -21,9 +21,10 @@ export const ContactForm = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '100px' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '100px', color: "#FFFFFF"}}>
       <StyledContactForm>
         <h1>Contact Us</h1>
+        <br></br>
         <form ref={form} onSubmit={sendEmail}>
           <label>Name</label>
           <input type="text" name="user_name" />
@@ -41,22 +42,23 @@ export const ContactForm = () => {
 export default ContactForm;
 // Styles
 const StyledContactForm = styled.div`
-  width: 400px;
+  width: 600px;
   form {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     width: 100%;
     font-size: 16px;
+    color: #FFFFFF;
     input {
       width: 100%;
       height: 35px;
       padding: 7px;
       outline: none;
       border-radius: 5px;
-      border: 1px solid rgb(220, 220, 220);
+      border: 1px solid #0440CB;
       &:focus {
-        border: 2px solid rgba(0, 206, 158, 1);
+        border: 2px solid #0440CB;
       }
     }
     textarea {
@@ -68,9 +70,9 @@ const StyledContactForm = styled.div`
       padding: 7px;
       outline: none;
       border-radius: 5px;
-      border: 1px solid rgb(220, 220, 220);
+      border: 1px solid #0440CB;
       &:focus {
-        border: 2px solid rgba(0, 206, 158, 1);
+        border: 2px solid #0440CB;
       }
     }
     label {
@@ -79,8 +81,8 @@ const StyledContactForm = styled.div`
     input[type='submit'] {
       margin-top: 2rem;
       cursor: pointer;
-      background: rgb(249, 105, 14);
-      color: white;
+      background: #0440CB;
+      color: #FFFFFF;
       border: none;
     }
   }
