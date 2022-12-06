@@ -119,21 +119,22 @@ const JoinRoom = props => {
           There was no room with the id
         </Alert>
       </Collapse>
-      <Stack direction="row" spacing={15} justifyContent="center" alignItems="center">
-      <Card sx={{ bgcolor: '#0466C8', maxWidth: 500, maxHeight: 800}} color="success">
+      <Stack direction="row" justifyContent="center" alignItems="center">
+      <Card sx={{ m:10, textDecoration: 'none', bgcolor: '#141823'}}>
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
           <CardContent >
           <Typography variant="h4" color = "white" gutterBottom>
             Join room
             </Typography>
-            <TextField sx={{ input: { color: 'white' } }} id="outlined-basic" label="Name" variant="outlined" 
+            <TextField id="outlined-start-adornment"
+          sx={{backgroundColor: "#FFF", m: 1, width: '25ch' }} label="Name" variant="outlined" 
            type="text"
            placeholder="name"
            onChange={e => {
              setUsername(e.target.value);
            }}
         />
-            <TextField sx={{ input: { color: 'white' } }} id="outlined-basic" label="Room ID" variant="outlined"
+            <TextField sx={{backgroundColor: "#FFF", m: 1, width: '25ch' }} id="outlined-basic" label="Room ID" variant="outlined"
           type="text"
           placeholder="room id"
           onChange={e => {
