@@ -136,7 +136,7 @@ export const ChatRoom = props => {
                 if (index !== 0 && allMessages[index - 1].user === allMessages[index].user) {
                   return (
                     <div key={index}>
-                      <Chip sx={{ fontSize: 16, p: 1, backgroundColor:'#CFD2CF' }} variant="Filled" label={`${message.message}`} />
+                      <Chip sx={{ fontSize: 16, p: 1, backgroundColor:'#3d4451', color: '#D6E4E5'}} variant="Filled" label={`${message.message}`} />
                     </div>
                   );
                 }
