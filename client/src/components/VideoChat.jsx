@@ -8,9 +8,6 @@ import '../css/components/VideoChat.css';
 //const uuid = require("uuid/v4")
 
 const APP_ID = '0bb291f858984709810afc67fd472532';
-const TOKEN =
-  '007eJxTYPgvXGr+I2Rl3KEqadlNa/2/vDl8sLTE/G0ml+mzH3NKNS8pMBgkJRlZGqZZmFpYWpiYG1haGBokpiWbmaelmJgbmRobcZ3sS24IZGQwashhYIRCEJ+FoSS1uISBAQCcVR/W';
-const CHANNEL = 'test';
 
 const client = AgoraRTC.createClient({
   mode: 'rtc',
@@ -20,6 +17,19 @@ const client = AgoraRTC.createClient({
 const VideoChat = props => {
   const [users, setUsers] = useState([]);
   const [localTracks, setLocalTracks] = useState([]);
+
+  VideoChat.propTypes = {
+    socket: PropTypes.object,
+    roomId: PropTypes.string,
+    userName: PropTypes.string,
+    rtcToken: PropTypes.string
+  };
+
+  const TOKEN = props.rtcToken;
+  const CHANNEL = props.roomId;
+
+  console.log("Token: " + TOKEN)
+  console.log("TokenHi: " + props.userName)
 
   const handleUserJoined = async (user, mediaType) => {
     await client.subscribe(user, mediaType);
@@ -38,11 +48,12 @@ const VideoChat = props => {
   };
 
   useEffect(() => {
+
     client.on('user-published', handleUserJoined);
     client.on('user-left', handleUserLeft);
 
     client
-      .join(APP_ID, CHANNEL, TOKEN, null)
+      .join(APP_ID, CHANNEL, TOKEN, props.userName)
       .then(uid => Promise.all([AgoraRTC.createMicrophoneAndCameraTracks(), uid]))
       .then(([tracks, uid]) => {
         const [audioTrack, videoTrack] = tracks;
@@ -68,12 +79,6 @@ const VideoChat = props => {
       client.unpublish(tracks).then(() => client.leave());
     };
   }, []);
-
-  VideoChat.propTypes = {
-    socket: PropTypes.object,
-    roomId: PropTypes.string,
-    userName: PropTypes.string
-  };
 
   return (
     <div>
