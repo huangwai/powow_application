@@ -11,6 +11,7 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import { useNavigate } from 'react-router-dom';
+//import '../css/pages/CardOptions'
 
 const Img = styled('img')({
   margin: 'auto',
@@ -22,9 +23,9 @@ const Img = styled('img')({
 export default function ComplexGrid() {
   const navigate = useNavigate();
   return (
-    <Stack direction="row" spacing={15} justifyContent="center" alignItems="center">
-      <Card sx={{ bgcolor: '#141823', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 1000 }} color="success">
-        <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
+    <Stack direction="row" spacing={15} justifyContent="center" alignItems="center" className='cards'>
+      <Card sx={{ bgcolor: '#141823', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 400 }} color="success">
+        <Box display="flex" justifyContent="center" alignItems="center" sx={{ m:10, mt:5, ml: 5, mr: 5 }}>
           <CardContent >
           <Typography sx={{ fontWeight: 'bold' }} variant="h4" color = "white" gutterBottom>
             Create a Room
@@ -37,16 +38,16 @@ export default function ComplexGrid() {
             </Typography>
           </CardContent>
         </Box>
-        <Box display="flex" justifyContent="center" alignItems="center" sx={{ mb: 10 }}>
+        <Box display="flex" justifyContent="center" sx={{ mb: 5, alignItems: "flex-end" }}>
           <CardActions>
-            <Button sx = {{backgroundColor: "#0440CB",fontWeight: 'bold', color:"white"}} size="large" variant="outlined" onClick={() => navigate('/createRoom')}>
+            <Button sx = {{backgroundColor: "#0440CB",fontWeight: 'bold', color:"white", width:200}} size="large" variant="outlined" onClick={() => navigate('/createRoom')}>
               Create
             </Button>
           </CardActions>
         </Box>
       </Card>
-      <Card sx={{ bgcolor: '#141823', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 500 }}>
-        <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
+      <Card sx={{ bgcolor: '#141823', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 400 }}>
+        <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10, mt: 5 }}>
           <CardContent>
           <Typography  sx={{ fontWeight: 'bold' }} variant="h4" color = "white" gutterBottom>
             Join a Room
@@ -59,16 +60,16 @@ export default function ComplexGrid() {
             </Typography>
           </CardContent>
         </Box>
-        <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
+        <Box display="flex" justifyContent="center" sx={{ mb: 5, alignItems: "flex-end" }}>
           <CardActions>
-            <Button sx = {{backgroundColor: "#0440CB",fontWeight: 'bold', color:"white"}}size="large" variant="outlined" onClick={() => navigate('/joinRoom')}>
+            <Button sx = {{backgroundColor: "#0440CB",fontWeight: 'bold', color:"white", width:200}}size="large" variant="outlined" onClick={() => navigate('/joinRoom')}>
               Join
             </Button>
           </CardActions>
         </Box>
       </Card>
-      <Card sx={{ bgcolor: '#141823', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 500 }}>
-        <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
+      <Card sx={{ bgcolor: '#141823', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 400 }}>
+        <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10, mt:5 }}>
           <CardContent >
           <Typography sx={{ fontWeight: 'bold' }} variant="h4" color = "white" gutterBottom>
             Public Chat
@@ -81,9 +82,9 @@ export default function ComplexGrid() {
             </Typography>
           </CardContent>
         </Box>
-        <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
+        <Box display="flex" justifyContent="center" sx={{ mb: 5, alignItems: "flex-end" }}>
           <CardActions>
-            <Button sx = {{backgroundColor: "#0440CB",fontWeight: 'bold', color:"white"}} size="large" variant="outlined" onClick={() => navigate('/publicChat')}>
+            <Button sx = {{backgroundColor: "#0440CB",fontWeight: 'bold', color:"white", width:200}} size="large" variant="outlined" onClick={() => navigate('/publicChat')}>
               Explore
             </Button>
           </CardActions>

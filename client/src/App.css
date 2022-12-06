@@ -3,10 +3,12 @@
     height: 100%;
   overflow: hidden;
   background-repeat: no-repeat;
+  font-family: 'Montserrat', sans-serif;
 }
 #root {
     height: 100%;
     overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
   }
   html,body {
     height: 100%;

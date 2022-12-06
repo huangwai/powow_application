@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import '../css/components/Header.css'
 
 const pages = ['Home', 'Chat', 'About'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -39,7 +40,6 @@ function ResponsiveAppBar() {
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',

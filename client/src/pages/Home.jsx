@@ -23,9 +23,9 @@ const Home = props => {
   };
   return (
     <div className="Home">
-      <Stack direction="row" spacing={15} justifyContent="flex-start" alignItems="center">
-      <Card sx={{ textDecoration: 'none', bgcolor: '#0F131F', minWidth: 100, maxWidth:800, minHeight: 100, maxHeight: 500 }} color="success">
-        <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
+      <Stack direction="row" justifyContent="center" alignItems="center">
+      <Card sx={{ textDecoration: 'none', bgcolor: '#141823', minWidth: 100, maxWidth:800, minHeight: 100, maxHeight: 500 }} color="success">
+        <Box display="flex" justifyContent="center" alignItems="center">
           <CardContent >
           <Typography sx={{ fontWeight: 'bold' }} justifyContent="flex-start" variant="h4" color = "white" gutterBottom>
           Chat with POWOW
@@ -35,7 +35,7 @@ const Home = props => {
             </Typography>
           </CardContent>
         </Box>
-        <Box display="flex" justifyContent="flex-start" alignItems="center" sx={{ mb: 10 }}>
+        <Box display="flex" justifyContent="center" alignItems="center" sx={{ mb: 10 }}>
           <CardActions>
             <Button sx = {{backgroundColor: "#0440CB",fontWeight: 'bold', color:"#FFFFFF"}} size="large" variant="outlined" href="/chatOptions">
             Start exploring
@@ -43,9 +43,9 @@ const Home = props => {
           </CardActions>
         </Box>
       </Card>
-      <box className="loader">
+      {/* <box className="loader">
                     |<span>o</span><span>_</span><span>o</span>|<span>^</span><span>_</span><span>^</span>|<span>+</span><span>_</span><span>+</span>|
-      </box>
+      </box> */}
       </Stack>
     </div>
   );

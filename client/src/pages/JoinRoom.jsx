@@ -18,6 +18,7 @@ import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import ScrollToBottom from 'react-scroll-to-bottom'
+import '../css/pages/JoinRoom.css'
 
 /*
 Join Room page component
@@ -111,7 +112,7 @@ const JoinRoom = props => {
         </Alert>
       </Collapse>
       <Stack direction="row" spacing={15} justifyContent="center" alignItems="center">
-      <Card sx={{ bgcolor: '#0466C8', maxWidth: 500, maxHeight: 400}} color="success">
+      <Card sx={{ bgcolor: '#0466C8', maxWidth: 500, maxHeight: 800}} color="success">
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
           <CardContent >
           <Typography variant="h4" color = "white" gutterBottom>
@@ -143,7 +144,10 @@ const JoinRoom = props => {
         <ScrollToBottom className="messageScrollContainer">
           <Stack direction="column" spacing={0.3}>
             {rooms.map(room => (
-              <Item>{room.Name}</Item>
+              <Item className='rooms'>
+                <div>{room.Name}</div>
+                <div>{room.Occupancy}/4</div>
+              </Item>
             ))}
           </Stack>
       </ScrollToBottom>

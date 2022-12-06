@@ -40,7 +40,7 @@ function App() {
           </Routes>
         </Box>
       </Box>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   );
 }
