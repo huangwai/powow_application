@@ -2,13 +2,18 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { ChatRoom } from '../components/ChatRoom';
-import { VideoRoom } from '../components/VideoRoom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import VideoChat from '../components/VideoChat';
+import '../css/pages/PublicChat.css';
 
 export const Room = props => {
   const { id } = useParams();
   const socket = props.socket;
   const navigate = useNavigate();
+  const {state} = useLocation();
+  const {rtcToken, userName} = state
+
+  console.log("Token1: " + rtcToken)
 
   useEffect(() => {
     const joinAttempt = async room => {
@@ -16,7 +21,7 @@ export const Room = props => {
       await fetch(url, { method: 'GET' })
         .then(response => response.json())
         // redirect to home if room does not exist
-        .catch(() => navigate('error'));
+        //.catch(() => navigate('error'));
     };
     joinAttempt(String(id));
     // successfully joined room
@@ -27,9 +32,11 @@ export const Room = props => {
     userName: PropTypes.string
   };
   return (
-    <div>
-      {/* <VideoRoom /> */}
-      <ChatRoom socket={socket} userName={props.userName} roomId={id} />
+    <div className='public-chat'>
+      <div className='one'>
+        <VideoChat socket={props.socket} userName={userName} roomId={String(id)} rtcToken={rtcToken}/>
+      </div>
+      <ChatRoom socket={props.socket} userName={userName} roomId={String(id)} />
     </div>
   );
 };

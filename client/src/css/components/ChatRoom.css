@@ -40,3 +40,7 @@
 .chip {
   background-color: #52796F;
 }
+
+.messageField {
+  border-radius: 50%;
+}

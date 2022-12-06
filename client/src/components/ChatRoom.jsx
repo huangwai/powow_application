@@ -114,13 +114,11 @@ export const ChatRoom = props => {
           </Alert>
         </Collapse>
       </Box> */}
+      
       <div className="chatContainer">
         <div className="body">
         <ScrollToBottom className="messageScrollContainer">
           <Stack direction="column" spacing={0.3}>
-            
-
-            
             {allMessages.map((message, index) => {
               if (message.user === props.userName) {
                 return (
@@ -171,9 +169,7 @@ export const ChatRoom = props => {
                 }
               }}
             />
-            <Button variant="outlined" onClick={sendMessage} endIcon={<SendIcon />}>
-              Send
-            </Button>
+            <Button variant="outlined" onClick={sendMessage} endIcon={<SendIcon />}></Button>
           </Box>
         </div>
       </div>

@@ -26,16 +26,24 @@ const JoinRoom = props => {
   const socket = props.socket;
   const navigate = useNavigate();
 
+  let rtcToken = ''
+
   const joinRoom = async () => {
     if (userName !== '' && roomId !== '') {
-      const url = `http://localhost:3001/room/${roomId}`;
+      let url = `http://localhost:3001/rtc/${roomId}/audience/uid/${userName}`;
+      await fetch(url, { method: 'GET' })
+        .then(response => response.json())
+        .then(data => {
+          rtcToken = data.rtcToken;
+          console.log("Token12: " + rtcToken)
+        })
+      url = `http://localhost:3001/room/${roomId}`;
       await fetch(url, { method: 'GET' })
         .then(response => response.json())
         .then(() => {
           // room exists so join room
           console.log(`joined room userName: ${userName}, roomId: ${roomId}`);
-          socket.emit('joinRoom', roomId);
-          navigate('/room/' + roomId);
+          join(rtcToken)
         })
         // there was no room with the id so send error unable to join room
         .catch(() => {
@@ -44,6 +52,11 @@ const JoinRoom = props => {
         });
     }
   };
+
+  const join = async(rtcToken) => {
+    await socket.emit('joinRoom', roomId);
+    await navigate('/room/' + roomId, {state: {rtcToken: rtcToken, userName: userName}});
+  }
 
   JoinRoom.propTypes = {
     socket: PropTypes.object

@@ -13,8 +13,8 @@ function Header() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="chatOptions">Chat</Nav.Link>
-            <Nav.Link href="about">About</Nav.Link>
+            <Nav.Link href="/chatOptions">Chat</Nav.Link>
+            <Nav.Link href="/about">About</Nav.Link>
             {/* <NavDropdown title="Chat" id="collasible-nav-dropdown">
               <NavDropdown.Item href="chatOptions">Public Chat</NavDropdown.Item>
               <NavDropdown.Item href="#joinRoom">
@@ -28,7 +28,7 @@ function Header() {
             </NavDropdown> */}
           </Nav>
           <Nav>
-            <Nav.Link href="contact">Contact</Nav.Link>
+            <Nav.Link href="/contact">Contact</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

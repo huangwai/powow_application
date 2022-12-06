@@ -33,9 +33,20 @@ const CreateRoom = props => {
   const socket = props.socket;
   const navigate = useNavigate();
 
+
+
   const joinRoom = async () => {
+    let token = ''
     if (userName !== '' && roomId !== '') {
-      const url = `http://localhost:3001/room/${roomId}`;
+      let url = `http://localhost:3001/rtc/${roomId}/publisher/uid/${userName}`;
+      await fetch(url, { method: 'GET' })
+        .then(response => response.json())
+        .then(data => {
+          token = data.rtcToken
+          console.log("Token12: " + token)
+        })
+
+      url = `http://localhost:3001/room/${roomId}`;
       await fetch(url, { method: 'GET' })
         .then(response => response.json())
         // there was room so send error unable to create room
@@ -46,11 +57,15 @@ const CreateRoom = props => {
         // there was no room with the id so create room
         .catch(() => {
           console.log(`created room userName: ${userName}, roomId: ${roomId}`);
-          socket.emit('CreateRoom', roomId);
-          navigate('/room/' + roomId);
+          createRoom(token)
         });
     }
   };
+
+  const createRoom = async(token) => {
+    await socket.emit('createRoom', roomId);
+    await navigate('/room/' + roomId, {state: {rtcToken: token, userName: userName}});
+  }
 
   CreateRoom.propTypes = {
     socket: PropTypes.object
