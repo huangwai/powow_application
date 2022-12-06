@@ -43,10 +43,8 @@ io.on('connection', socket => {
   console.log(`Connected: ${socket.id}`);
 
   //join room based on id
-  socket.on('joinRoom', async data => {
+  socket.on('joinRoom', async roomId => {
     try {
-      const roomId = data.roomId
-      const rtcToken = data.rtcToken
       socket.join(roomId);
       console.log(`User ${socket.id} joined room ${roomId}`);
     } catch (e) {

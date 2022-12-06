@@ -36,7 +36,7 @@ export const Room = props => {
       <div className='one'>
         <VideoChat socket={props.socket} userName={userName} roomId={String(id)} rtcToken={rtcToken}/>
       </div>
-      <ChatRoom socket={props.socket} userName={props.userName} roomId={String(id)} />
+      <ChatRoom socket={props.socket} userName={userName} roomId={String(id)} />
     </div>
   );
 };

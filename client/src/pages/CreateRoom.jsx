@@ -33,16 +33,17 @@ const CreateRoom = props => {
   const socket = props.socket;
   const navigate = useNavigate();
 
-  let rtcToken = ''
+
 
   const joinRoom = async () => {
+    let token = ''
     if (userName !== '' && roomId !== '') {
       let url = `http://localhost:3001/rtc/${roomId}/publisher/uid/${userName}`;
       await fetch(url, { method: 'GET' })
         .then(response => response.json())
         .then(data => {
-          rtcToken = data.rtcToken;
-          console.log("Token12: " + rtcToken)
+          token = data.rtcToken
+          console.log("Token12: " + token)
         })
 
       url = `http://localhost:3001/room/${roomId}`;
@@ -56,16 +57,14 @@ const CreateRoom = props => {
         // there was no room with the id so create room
         .catch(() => {
           console.log(`created room userName: ${userName}, roomId: ${roomId}`);
-          createRoom(roomId)
+          createRoom(token)
         });
-
-
     }
   };
 
-  const createRoom = async(roomId) => {
-    await socket.emit('CreateRoom', roomId);
-    await navigate('/room/' + roomId, {state: {rtcToken: rtcToken, userName: userName}});
+  const createRoom = async(token) => {
+    await socket.emit('createRoom', roomId);
+    await navigate('/room/' + roomId, {state: {rtcToken: token, userName: userName}});
   }
 
   CreateRoom.propTypes = {
