@@ -24,18 +24,15 @@ const Home = props => {
   return (
     <div className="Home">
       <Stack direction="row" justifyContent="center" alignItems="center">
-      <Card sx={{ textDecoration: 'none', bgcolor: '#141823', minWidth: 100, maxWidth:800, minHeight: 100, maxHeight: 500 }} color="success">
-        <Box display="flex" justifyContent="center" alignItems="center">
-          <CardContent >
-          <Typography sx={{ fontWeight: 'bold' }} justifyContent="flex-start" variant="h4" color = "white" gutterBottom>
-          Chat with POWOW
-            </Typography>
-            <Typography variant="body2" justifyContent="flex-start" color = "white" gutterBottom >
+      <Card sx={{ m:10, textDecoration: 'none', bgcolor: '#141823'}}>
+      <Box display="flex" justifyContent="center" alignItems="center" sx={{ m:3, mt:5, ml: 5, mr: 5 }}>
+          <CardContent> 
+            <Typography variant="h4" color = "white" gutterBottom >
             Reconnect or Explore new conversations with friends accross the web
             </Typography>
           </CardContent>
         </Box>
-        <Box display="flex" justifyContent="center" alignItems="center" sx={{ mb: 10 }}>
+        <Box display="flex" justifyContent="center" sx={{ mb: 10, alignItems: "flex-end" }}>
           <CardActions>
             <Button sx = {{backgroundColor: "#0440CB",fontWeight: 'bold', color:"#FFFFFF"}} size="large" variant="outlined" href="/chatOptions">
             Start exploring

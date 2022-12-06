@@ -9,7 +9,7 @@ const PublicChat = props => {
     PublicChat.propTypes = {
         socket: PropTypes.object
     }
-
+    
   return (
     <div className='public-chat'>
       <div className='one'>
