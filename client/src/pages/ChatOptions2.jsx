@@ -47,7 +47,7 @@ export default function ComplexGrid() {
         </Box>
       </Card>
       <Card sx={{ bgcolor: '#141823', height: 400, width: 400}}>
-        <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10, mt:5 }}>
+        <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10, mt: 5 }}>
           <CardContent>
           <Typography  sx={{ fontWeight: 'bold' }} variant="h4" color = "white" gutterBottom>
             Join a Room
@@ -60,7 +60,7 @@ export default function ComplexGrid() {
             </Typography>
           </CardContent>
         </Box>
-        <Box display="flex" justifyContent="center" sx={{ mb: 100, alignItems: "flex-end" }}>
+        <Box display="flex" justifyContent="center" sx={{ mb: 10, alignItems: "flex-end" }}>
           <CardActions>
             <Button sx = {{backgroundColor: "#0440CB",fontWeight: 'bold', color:"white", width:200}}size="large" variant="outlined" onClick={() => navigate('/joinRoom')}>
               Join

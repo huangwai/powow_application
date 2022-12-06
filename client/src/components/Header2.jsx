@@ -44,32 +44,14 @@ function ResponsiveAppBar() {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
-              fontSize: '30px'
+              fontSize: '30px',
+              pl: 2
             }}
           >
             POWOW
           </Typography>
 
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-              fontSize: '30px'
-            }}
-          >
-            POWOW
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' }, justifyContent: 'flex-end' }} >
+          <Box sx={{ pr: 2, flexGrow: 1, display: { xs: 'flex', md: 'flex' }, justifyContent: 'flex-end' }} >
             <Button
                 href="/"
                 sx={{ my: 2, color: 'white', display: 'block', fontSize: '20px', paddingInlineStart: 2 }}
