@@ -2,7 +2,7 @@ GET http://localhost:3001/room
 
 ###
 
-GET http://localhost:3001/room/123
+GET http://localhost:3001/room/123123213321
 
 ###
 
