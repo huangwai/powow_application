@@ -47,6 +47,8 @@ io.on('connection', socket => {
     try {
       socket.join(roomId);
       console.log(`User ${socket.id} joined room ${roomId}`);
+      const room = await Room.findOne({ id: roomId });
+      await Room.updateOne({ id: roomId }, { $set: { userCount: room.userCount + 1 } });
     } catch (e) {
       console.log(e);
     }
@@ -58,6 +60,7 @@ io.on('connection', socket => {
       console.log('creating room', roomId);
       const newRoom = new Room({
         id: roomId,
+        userCount: 1,
         messages: []
       });
       await Room.create(newRoom);
