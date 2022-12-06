@@ -24,7 +24,7 @@ const Home = props => {
   return (
     <div className="Home">
       <Stack direction="row" spacing={15} justifyContent="flex-start" alignItems="center">
-      <Card sx={{ bgcolor: '#0466C8', minWidth: 100, maxWidth:800, minHeight: 100, maxHeight: 500 }} color="success">
+      <Card sx={{ textDecoration: 'none', bgcolor: '#0F131F', minWidth: 100, maxWidth:800, minHeight: 100, maxHeight: 500 }} color="success">
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
           <CardContent >
           <Typography sx={{ fontWeight: 'bold' }} justifyContent="flex-start" variant="h4" color = "white" gutterBottom>
@@ -37,7 +37,7 @@ const Home = props => {
         </Box>
         <Box display="flex" justifyContent="flex-start" alignItems="center" sx={{ mb: 10 }}>
           <CardActions>
-            <Button sx = {{backgroundColor: "white",fontWeight: 'bold'}} size="large" variant="outlined" href="/chatOptions">
+            <Button sx = {{backgroundColor: "#0440CB",fontWeight: 'bold', color:"#FFFFFF"}} size="large" variant="outlined" href="/chatOptions">
             Start exploring
             </Button>
           </CardActions>
@@ -47,34 +47,6 @@ const Home = props => {
                     |<span>o</span><span>_</span><span>o</span>|<span>^</span><span>_</span><span>^</span>|<span>+</span><span>_</span><span>+</span>|
       </box>
       </Stack>
-
-
-      {/* <Box component="main" sx={{ flexGrow: 1, bgcolor: 'background.default', p: 10 }}>
-        <Card sx={{ minWidth: 300, maxWidth: 500 }}>
-          <CardContent>
-            <h3>Connect across the world starting with POWOW </h3>
-            <br></br>
-            <p>Reconnect or Explore new conversations with friends accross the web.</p>
-          </CardContent>
-          <CardActions>
-            <Button href="/chatOptions" size="small">
-              Start exploring
-            </Button>
-          </CardActions>
-        </Card> */}
-        {/* <Card sx={{ minWidth: 300, maxWidth: 300 }}>
-          <CardContent>
-            <p>Start connecting</p>
-          </CardContent>
-          <CardActions>
-            <Button size="small">Join random lobby</Button>
-          </CardActions>
-        </Card> */}
-        {/* <div id="globalChat">
-          <ChatRoom socket={props.socket} userName={userName} roomId={'-1'} />
-        </div> */}
-      {/* </Box> */}
-      {/* <ContactForm/> */}
     </div>
   );
 };

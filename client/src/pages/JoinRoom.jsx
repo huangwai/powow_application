@@ -111,7 +111,7 @@ const JoinRoom = props => {
         </Alert>
       </Collapse>
       <Stack direction="row" spacing={15} justifyContent="center" alignItems="center">
-      <Card sx={{ bgcolor: '#0466C8' }} color="success">
+      <Card sx={{ bgcolor: '#0466C8', maxWidth: 500, maxHeight: 400}} color="success">
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
           <CardContent >
           <Typography variant="h4" color = "white" gutterBottom>
@@ -149,24 +149,6 @@ const JoinRoom = props => {
       </ScrollToBottom>
       </Card>
       </Stack>
-      {/* <p>Join room</p>
-      <input
-        type="text"
-        placeholder="name"
-        onChange={e => {
-          setUsername(e.target.value);
-        }}
-      />
-      <input
-        type="text"
-        placeholder="room id"
-        onChange={e => {
-          setRoomId(e.target.value);
-        }}
-      />
-      <Button onClick={joinRoom} variant="contained">
-        Join Room
-      </Button> */}
     </div>
   );
 };

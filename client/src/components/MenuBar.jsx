@@ -91,24 +91,6 @@ export const MenuBar = () => {
             </ListItemButton>
           </ListItem>
 
-          {/* <ListItem key={'Create Room'} disablePadding>
-            <ListItemButton onClick={() => navigate('/createRoom')}>
-              <ListItemIcon>
-                <GroupAddIcon />
-              </ListItemIcon>
-              <ListItemText primary={'Create Room'} />
-            </ListItemButton>
-          </ListItem>
-
-          <ListItem key={'Join Room'} disablePadding>
-            <ListItemButton onClick={() => navigate('/joinRoom')}>
-              <ListItemIcon>
-                <PersonAddAlt1Icon />
-              </ListItemIcon>
-              <ListItemText primary={'Join Room'} />
-            </ListItemButton>
-          </ListItem> */}
-
           <ListItem key={'About'} disablePadding>
             <ListItemButton onClick={() => navigate('/about')}>
               <ListItemIcon>
