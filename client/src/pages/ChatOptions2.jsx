@@ -62,8 +62,8 @@ const joinRoom = async () => {
   };
   const navigate = useNavigate();
   return (
-    <Stack direction="row" spacing={15} justifyContent="center" alignItems="center" className='cards'>
-      <Card sx={{ bgcolor: '#141823', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 400 }} color="success">
+    <Stack sx={{ m:10 }} direction="row" spacing={10} justifyContent="center" alignItems="center" className='cards'>
+      <Card sx={{ bgcolor: '#141823', height: 400, width: 400}}>
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ m:10, mt:5, ml: 5, mr: 5 }}>
           <CardContent >
           <Typography sx={{ fontWeight: 'bold' }} variant="h4" color = "white" gutterBottom>
@@ -85,8 +85,8 @@ const joinRoom = async () => {
           </CardActions>
         </Box>
       </Card>
-      <Card sx={{ bgcolor: '#141823', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 400 }}>
-        <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10, mt: 5 }}>
+      <Card sx={{ bgcolor: '#141823', height: 400, width: 400}}>
+        <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10, mt:5 }}>
           <CardContent>
           <Typography  sx={{ fontWeight: 'bold' }} variant="h4" color = "white" gutterBottom>
             Join a Room
@@ -99,7 +99,7 @@ const joinRoom = async () => {
             </Typography>
           </CardContent>
         </Box>
-        <Box display="flex" justifyContent="center" sx={{ mb: 5, alignItems: "flex-end" }}>
+        <Box display="flex" justifyContent="center" sx={{ mb: 100, alignItems: "flex-end" }}>
           <CardActions>
             <Button sx = {{backgroundColor: "#0440CB",fontWeight: 'bold', color:"white", width:200}}size="large" variant="outlined" onClick={() => navigate('/joinRoom')}>
               Join
@@ -107,7 +107,7 @@ const joinRoom = async () => {
           </CardActions>
         </Box>
       </Card>
-      <Card sx={{ bgcolor: '#141823', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 400 }}>
+      <Card sx={{ bgcolor: '#141823', height: 400, width: 400}}>
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10, mt:5 }}>
           <CardContent >
           <Typography sx={{ fontWeight: 'bold' }} variant="h4" color = "white" gutterBottom>

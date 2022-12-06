@@ -71,7 +71,7 @@ const CreateRoom = props => {
     socket: PropTypes.object
   };
   return (
-    <div className="joinContainer">
+    <div className="createContainer">
       <Collapse in={error}>
         <Alert
           severity="error"
@@ -93,8 +93,8 @@ const CreateRoom = props => {
         </Alert>
       </Collapse>
 
-      <Stack direction="row" spacing={15} justifyContent="center" alignItems="center">
-      <Card sx={{ bgcolor: '#0466C8' }} color="success">
+      <Stack direction="row" justifyContent="center" alignItems="center">
+      <Card sx={{ m:10, textDecoration: 'none', bgcolor: '#141823'}}>
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
           <CardContent >
           <Typography sx={{ fontWeight: 'bold' }} variant="h4" color = "white" gutterBottom>
