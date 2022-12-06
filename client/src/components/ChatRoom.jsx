@@ -118,7 +118,7 @@ export const ChatRoom = props => {
       <div className="chatContainer">
         <div className="body">
         <ScrollToBottom className="messageScrollContainer">
-          <Stack direction="column" spacing={0.3}>
+          <Stack direction="column" spacing={.3}>
             {allMessages.map((message, index) => {
               if (message.user === props.userName) {
                 return (
@@ -129,21 +129,21 @@ export const ChatRoom = props => {
                       justifyContent: 'flex-end'
                     }}
                   >
-                    <Chip sx={{ fontSize: 16, p: 1 }} className='chip' label={`${message.message}`} />
+                    <Chip sx={{ fontSize: 16, p: 1, backgroundColor:'#0440CB', color: '#D6E4E5'}} className='chip' label={`${message.message}`} />
                   </Box>
                 );
               } else {
                 if (index !== 0 && allMessages[index - 1].user === allMessages[index].user) {
                   return (
                     <div key={index}>
-                      <Chip sx={{ fontSize: 16, p: 1 }} variant="outlined" label={`${message.message}`} />
+                      <Chip sx={{ fontSize: 16, p: 1, backgroundColor:'#CFD2CF' }} variant="Filled" label={`${message.message}`} />
                     </div>
                   );
                 }
                 return (
                   <div key={index}>
                     <p className="messageHeader">{`${message.user} ${message.time}`}</p>
-                    <Chip sx={{ fontSize: 16, p: 1 }} variant="outlined" label={`${message.message}`} />
+                    <Chip sx={{ fontSize: 16, p: 2, backgroundColor:'#3d4451', color: '#D6E4E5'}} variant="Filled" label={`${message.message}`} />
                   </div>
                 );
               }
@@ -154,12 +154,13 @@ export const ChatRoom = props => {
         <div className="footer">
           <Box sx={{ display: 'flex' }}>
             <TextField
-              sx={{ flexGrow: 1 }}
+              sx={{ flexGrow: 1}}
               className="messageField"
               size="small"
               value={message}
               variant="outlined"
               label="Send Message"
+              color="warning"
               onChange={e => {
                 setMessage(e.target.value);
               }}

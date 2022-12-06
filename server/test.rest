@@ -15,3 +15,11 @@ GET http://localhost:3001/rtc/test/publisher/uid/pramodharya
 ###
 
 GET http://localhost:3001/rtc/ping
+
+###
+
+GET http://localhost:3001/room/all
+
+###
+
+POST http://localhost:3001/room/1234/disconnect

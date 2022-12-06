@@ -6,6 +6,10 @@ const roomSchema = new mongoose.Schema({
     type: String,
     required: 'Room Id is required!'
   },
+  userCount: {
+    type: Number,
+    required: 'User count is required!'
+  },
   messages: {
     type: [messageSchema]
   }
