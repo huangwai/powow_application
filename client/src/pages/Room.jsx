@@ -13,18 +13,32 @@ export const Room = props => {
   const {state} = useLocation();
   const {rtcToken, userName} = state
 
-  console.log("Token1: " + rtcToken)
+  const joinAttempt = async room => {
+    const url = `http://localhost:3001/room/${room}`;
+    await fetch(url, { method: 'GET' })
+      .then(response => response.json())
+      // successfully joined room
+      .then(data => setAllMessages(data.messages))
+      // redirect to error if room does not exist
+      //.catch(() => navigate('error'));
+  }
+  const disconnect = async room => {
+    console.log(`user ${userName} disconnected`)
+    // const url = `http://localhost:3001/room/${room}/disconnect`;
+    // await fetch(url, { method: 'POST' })
+    //   .then(response => response.json())
+    //   .catch((e) => console.log(e));
+  }
 
   useEffect(() => {
-    const joinAttempt = async room => {
-      const url = `http://localhost:3001/room/${room}`;
-      await fetch(url, { method: 'GET' })
-        .then(response => response.json())
-        // redirect to home if room does not exist
-        //.catch(() => navigate('error'));
-    };
+    //componentDidMount\
     joinAttempt(String(id));
-    // successfully joined room
+
+    //componentWillUnmount
+    return () => {
+      console.log("I AM UNMOUNTING")
+      //disconnect(String(id))
+    }
   }, []);
 
   Room.propTypes = {

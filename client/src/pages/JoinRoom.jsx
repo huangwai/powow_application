@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
@@ -31,8 +31,13 @@ const JoinRoom = props => {
   const navigate = useNavigate();
 
   let rtcToken = ''
+  const [rooms, setRooms] = useState([])
 
-  const joinRoom = async () => {
+  const joinRoom = async (roomID) => {
+    if (roomID !== '') {
+      setRoomId(roomID);
+    }
+
     if (userName !== '' && roomId !== '') {
       let url = `http://localhost:3001/rtc/${roomId}/audience/uid/${userName}`;
       await fetch(url, { method: 'GET' })
@@ -57,25 +62,28 @@ const JoinRoom = props => {
     }
   };
 
+  const showRooms = async room => {
+    const url = `http://localhost:3001/room/all`;
+    await fetch(url, { method: 'GET' })
+      .then(response => response.json())
+      // successfully joined room
+      .then(data => setRooms(data))
+      // redirect to error if room does not exist
+      //.catch(() => navigate('error'));
+  }
+  useEffect(() => {
+    showRooms();
+  }, []);
+
+  // const joinRoomSpecific = (roomId) => {
+  //   setRoomId(roomId);
+  //   joinRoom()
+  // }
+
   const join = async(rtcToken) => {
     await socket.emit('joinRoom', roomId);
     await navigate('/room/' + roomId, {state: {rtcToken: rtcToken, userName: userName}});
   }
-
-  let rooms = [
-    {
-      "Name": "room1",
-      "Occupancy": "2"
-    },
-    {
-      "Name": "room2",
-      "Occupancy": "3"
-    },
-    {
-      "Name": "room1",
-      "Occupancy": "2"
-    }
-  ]
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -143,11 +151,11 @@ const JoinRoom = props => {
         </Box>
         <ScrollToBottom className="messageScrollContainer">
           <Stack direction="column" spacing={0.3}>
-            {rooms.map(room => (
-              <Item className='rooms'>
-                <div>{room.Name}</div>
-                <div>{room.Occupancy}/4</div>
-              </Item>
+            {rooms.map((room, index) => (
+                <Button sx={{color: '#fff', display: "flex", justifyContent: "space-between"}} variant="outlined" key={index} className='rooms' onClick={() => joinRoom(room.id)}>
+                  <div>{`${room.id}`}</div>
+                  <div>{index}/4</div>
+                </Button>
             ))}
           </Stack>
       </ScrollToBottom>
