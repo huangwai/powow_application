@@ -63,9 +63,12 @@ export const ChatRoom = props => {
     // fetch persistent messages from db
     const fetchMsg = async room => {
       const url = `http://localhost:3001/room/${room}`;
-      const res = await fetch(url, { method: 'GET' });
-      const data = await res.json();
-      setAllMessages(data.messages);
+      await fetch(url, { method: 'GET' })
+        .then(response => response.json())
+        .then(data => setAllMessages(data.messages))
+        .catch(err => console.log(err));
+      //const data = await res.json();
+      //setAllMessages(data.messages);
     };
     fetchMsg(props.roomId);
     // successfully joined room

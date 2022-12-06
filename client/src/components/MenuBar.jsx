@@ -25,7 +25,6 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ContactForm from './ContactForm';
 import MenuIcon from '@mui/icons-material/Menu';
 
-
 import { useNavigate } from 'react-router-dom';
 
 export const MenuBar = () => {
@@ -45,9 +44,9 @@ export const MenuBar = () => {
         <Toolbar>
           <IconButton onClick={handleDrawer} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             {/* <FlutterDashIcon /> */}
-            <MenuIcon/>
+            <MenuIcon />
           </IconButton>
-          <Button onClick={() => navigate('/')} color="inherit" font-size = "40" sx={{ flexGrow: 1 }}>
+          <Button onClick={() => navigate('/')} color="inherit" font-size="40" sx={{ flexGrow: 1 }}>
             POWOW
           </Button>
           {/* <Header>The Solar System</Header> */}
@@ -84,7 +83,7 @@ export const MenuBar = () => {
             </ListItemButton>
           </ListItem>
           <ListItem key={'Chat'} disablePadding>
-          <ListItemButton onClick={() => navigate('/chatOptions')}>
+            <ListItemButton onClick={() => navigate('/chatOptions')}>
               <ListItemIcon>
                 <ChatIcon />
               </ListItemIcon>
@@ -127,10 +126,8 @@ export const MenuBar = () => {
               <ListItemText primary={'Contact'} />
             </ListItemButton>
           </ListItem>
-
         </List>
       </Drawer>
-      
     </div>
   );
 };

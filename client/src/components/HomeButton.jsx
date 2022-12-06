@@ -7,7 +7,7 @@ function HomeButton() {
   const Button = () => {
     navigate('/');
   };
-  
+
   return (
     <div id="logobuttons">
       <button onClick={Button}> Return to Home</button>

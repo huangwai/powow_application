@@ -4,15 +4,14 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import JoinRoom from './pages/JoinRoom';
 import CreateRoom from './pages/CreateRoom';
+import { Room } from './pages/Room';
 import About from './pages/About';
 import NoPage from './pages/NoPage';
-import { MenuBar } from './components/MenuBar';
 import ContactForm from './components/ContactForm';
 import io from 'socket.io-client';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import GridTemplateColumns from './pages/ChatOptions';
-import Chat from '@mui/icons-material/Chat';
 import Footer from './components/Footer';
 import ComplexGrid from './pages/ChatOptions2';
 import Header from './components/Header';
@@ -23,6 +22,7 @@ function App() {
 
   return (
     <div className="App">
+
       <Header/>
       <Box sx={{ display: 'flex' }}>
         {/* <MenuBar /> */}
@@ -34,9 +34,10 @@ function App() {
             <Route exact path="/createRoom" element={<CreateRoom socket={socket} />} />
             <Route exact path="/joinRoom" element={<JoinRoom socket={socket} />} />
             <Route exact path="/about" element={<About />} />
-            <Route exact path="/chatOptions" element={<GridTemplateColumns />} />
+            <Route exact path="/chatOptions" element={<ComplexGrid />} />
             <Route exact path="/contact" element={<ContactForm />} />
             <Route exact path="/publicChat" element={<PublicChat socket={socket} />} />
+            <Route exact path="/room/:id" element={<Room socket={socket} userName={'temp'} />} />
             <Route exact path="/*" element={<NoPage />} />
           </Routes>
         </Box>

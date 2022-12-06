@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import AgoraRTC from 'agora-rtc-sdk-ng';
 import { VideoPlayer } from './VideoPlayer';
+import { ChatRoom } from './ChatRoom';
 import PropTypes from 'prop-types';
-import Stack from '@mui/material/Stack';
-import '../css/components/VideoChat.css';
 
 //const uuid = require("uuid/v4")
 
 const APP_ID = '0bb291f858984709810afc67fd472532';
 const TOKEN =
-  '007eJxTYPgvXGr+I2Rl3KEqadlNa/2/vDl8sLTE/G0ml+mzH3NKNS8pMBgkJRlZGqZZmFpYWpiYG1haGBokpiWbmaelmJgbmRobcZ3sS24IZGQwashhYIRCEJ+FoSS1uISBAQCcVR/W';
+  '007eJxTYHDwLEnfe+2ivK6HpDDrw2fnEw+s098mEZ9TICIafW2dX4ICg0FSkpGlYZqFqYWlhYm5gaWFoUFiWrKZeVqKibmRqbFR5dqy5IZARgYtaUdmRgYIBPFZGEpSi0sYGACJThwm';
 const CHANNEL = 'test';
 
 const client = AgoraRTC.createClient({
@@ -17,7 +16,7 @@ const client = AgoraRTC.createClient({
   codec: 'vp8'
 });
 
-const VideoChat = props => {
+export const VideoRoom = props => {
   const [users, setUsers] = useState([]);
   const [localTracks, setLocalTracks] = useState([]);
 
@@ -29,7 +28,7 @@ const VideoChat = props => {
     }
 
     if (mediaType === 'audio') {
-       //user.audioTrack.play()
+      // user.audioTrack.play()
     }
   };
 
@@ -68,25 +67,24 @@ const VideoChat = props => {
       client.unpublish(tracks).then(() => client.leave());
     };
   }, []);
-
-  VideoChat.propTypes = {
+  VideoRoom.propTypes = {
     socket: PropTypes.object,
     roomId: PropTypes.string,
     userName: PropTypes.string
   };
-
   return (
-    <div>
-      <Stack 
-        direction="row" 
-        spacing={2}
-        alignItems="center"
-        justifyContent="center">
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 200px)'
+        }}
+      >
         {users.map(user => (
           <VideoPlayer key={user.uid} user={user} />
         ))}
-      </Stack>
+      </div>
+      <ChatRoom socket={props.socket} userName={props.userName} roomId={props.roomId} />
     </div>
   );
 };
-export default VideoChat;

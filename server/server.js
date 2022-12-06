@@ -43,14 +43,33 @@ io.on('connection', socket => {
   console.log(`Connected: ${socket.id}`);
 
   //join room based on id
-  socket.on('joinRoom', roomId => {
-    socket.join(roomId);
-    console.log(`User ${socket.id} joined room ${roomId}`);
+  socket.on('joinRoom', async roomId => {
+    try {
+      socket.join(roomId);
+      console.log(`User ${socket.id} joined room ${roomId}`);
+    } catch (e) {
+      console.log(e);
+    }
+  });
+
+  //create room based on id
+  socket.on('createRoom', async roomId => {
+    try {
+      console.log('creating room', roomId);
+      const newRoom = new Room({
+        id: roomId,
+        messages: []
+      });
+      await Room.create(newRoom);
+      socket.join(roomId);
+      console.log(`User ${socket.id} created room ${roomId}`);
+    } catch (e) {
+      console.log(e);
+    }
   });
 
   //send message
   socket.on('sendMessage', async msgData => {
-    //sendMessage(msgData, socket);
     try {
       const msg = new Message({
         user: msgData.user,
@@ -60,23 +79,11 @@ io.on('connection', socket => {
       });
       // creates new message object
       await Message.create(msg);
-
       const room = await Room.findOne({ id: msgData.room });
-      // creates room if does not exist
-      if (room === null) {
-        console.log('creating room', msgData.room);
-        const newRoom = new Room({
-          id: msgData.room,
-          messages: [msg]
-        });
-        await Room.create(newRoom);
-      }
       // adds new message to list and updates message list
-      else {
-        console.log('room exists', msgData.room);
-        room.messages.push(msg);
-        await Room.updateOne({ id: msgData.room }, { $set: { messages: room.messages } });
-      }
+      console.log('room exists', msgData.room);
+      room.messages.push(msg);
+      await Room.updateOne({ id: msgData.room }, { $set: { messages: room.messages } });
       //emit message to everyone listening in same room
       socket.to(msgData.room).emit('receivedMessage', msgData);
       console.log(`sent message ${JSON.stringify(msgData)}`);
