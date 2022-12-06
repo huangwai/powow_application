@@ -16,7 +16,6 @@ import Chat from '@mui/icons-material/Chat';
 import Footer from './components/Footer';
 import ComplexGrid from './pages/ChatOptions2';
 import Header from './components/Header';
-import ResponsiveAppBar from './components/Header2';
 import PublicChat from './pages/PublicChat'
 
 function App() {
@@ -25,11 +24,10 @@ function App() {
   return (
     <div className="App">
       <Header/>
-      <ResponsiveAppBar/>
       <Box sx={{ display: 'flex' }}>
         {/* <MenuBar /> */}
         {/* <Header/> */}
-         <Box component="main" sx={{ flexGrow: 1, ml: 5, mr: 5, mt: 13, mb: 5 }}>
+         <Box component="main" sx={{ flexGrow: 1 }}>
         {/* <Header/> */}
           <Routes>
             <Route exact path="/" element={<Home socket={socket} />} />
@@ -38,7 +36,7 @@ function App() {
             <Route exact path="/about" element={<About />} />
             <Route exact path="/chatOptions" element={<GridTemplateColumns />} />
             <Route exact path="/contact" element={<ContactForm />} />
-            <Route exact path="/publicChat" element={<PublicChat />} />
+            <Route exact path="/publicChat" element={<PublicChat socket={socket} />} />
             <Route exact path="/*" element={<NoPage />} />
           </Routes>
         </Box>

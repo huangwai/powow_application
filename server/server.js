@@ -6,6 +6,7 @@ const { Server } = require('socket.io');
 const { Message } = require('./models/messageModel');
 const Room = require('./models/roomModel');
 const roomRouter = require('./routes/room');
+const rtcRouter = require('./routes/rtc');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/room', roomRouter);
+app.use('/rtc', rtcRouter);
 
 const server = http.createServer(app);
 

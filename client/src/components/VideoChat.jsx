@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import AgoraRTC from 'agora-rtc-sdk-ng';
 import { VideoPlayer } from './VideoPlayer';
 import PropTypes from 'prop-types';
+import Stack from '@mui/material/Stack';
+import '../css/components/VideoChat.css';
 
 //const uuid = require("uuid/v4")
 
@@ -27,7 +29,7 @@ const VideoChat = props => {
     }
 
     if (mediaType === 'audio') {
-      // user.audioTrack.play()
+       //user.audioTrack.play()
     }
   };
 
@@ -74,17 +76,16 @@ const VideoChat = props => {
   }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(2, 200px)'
-        }}
-      >
+    <div>
+      <Stack 
+        direction="row" 
+        spacing={2}
+        alignItems="center"
+        justifyContent="center">
         {users.map(user => (
           <VideoPlayer key={user.uid} user={user} />
         ))}
-      </div>
+      </Stack>
     </div>
   );
 };

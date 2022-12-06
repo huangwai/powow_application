@@ -13,7 +13,7 @@ return (
 	<Box>
 	<h1 style={{ color: "White",
 				textAlign: "center",
-				marginTop: "-50px" }}>
+}}>
 		POWOW
 	</h1>
 	<Container>

@@ -1,0 +1,9 @@
+.video-player {
+    border-radius: 10%;
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+
+    object-fit: cover;
+    object-position: center;
+}
