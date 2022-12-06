@@ -71,7 +71,7 @@ const VideoChat = props => {
     socket: PropTypes.object,
     roomId: PropTypes.string,
     userName: PropTypes.string
-  }
+  };
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -88,4 +88,4 @@ const VideoChat = props => {
     </div>
   );
 };
-export default VideoChat
+export default VideoChat;

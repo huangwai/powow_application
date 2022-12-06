@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { ChatRoom } from '../components/ChatRoom';
-import { VideoRoom } from '../components/Videoroom';
+import { VideoRoom } from '../components/VideoRoom';
+import { useNavigate } from 'react-router-dom';
 
 export const Room = props => {
   const { id } = useParams();
   const socket = props.socket;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const joinAttempt = async room => {
@@ -14,7 +16,7 @@ export const Room = props => {
       await fetch(url, { method: 'GET' })
         .then(response => response.json())
         // redirect to home if room does not exist
-        .catch(err => console.log(err));
+        .catch(() => navigate('error'));
     };
     joinAttempt(String(id));
     // successfully joined room
@@ -25,9 +27,9 @@ export const Room = props => {
     userName: PropTypes.string
   };
   return (
-    <>
-      {/* {<VideoRoom />} */}
+    <div>
+      {/* <VideoRoom /> */}
       <ChatRoom socket={socket} userName={props.userName} roomId={id} />
-    </>
+    </div>
   );
 };

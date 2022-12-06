@@ -43,15 +43,8 @@ io.on('connection', socket => {
   //join room based on id
   socket.on('joinRoom', async roomId => {
     try {
-      const room = await Room.findOne({ id: roomId });
-      if (room === null) {
-        console.log('no room');
-      }
-      //
-      else {
-        socket.join(roomId);
-        console.log(`User ${socket.id} joined room ${roomId}`);
-      }
+      socket.join(roomId);
+      console.log(`User ${socket.id} joined room ${roomId}`);
     } catch (e) {
       console.log(e);
     }
@@ -60,18 +53,14 @@ io.on('connection', socket => {
   //create room based on id
   socket.on('createRoom', async roomId => {
     try {
-      const room = await Room.findOne({ id: roomId });
-      // creates room if does not exist
-      if (room === null) {
-        console.log('creating room', roomId);
-        const newRoom = new Room({
-          id: roomId,
-          messages: []
-        });
-        await Room.create(newRoom);
-      }
+      console.log('creating room', roomId);
+      const newRoom = new Room({
+        id: roomId,
+        messages: []
+      });
+      await Room.create(newRoom);
       socket.join(roomId);
-      console.log(`User ${socket.id} joined room ${roomId}`);
+      console.log(`User ${socket.id} created room ${roomId}`);
     } catch (e) {
       console.log(e);
     }
@@ -79,7 +68,6 @@ io.on('connection', socket => {
 
   //send message
   socket.on('sendMessage', async msgData => {
-    //sendMessage(msgData, socket);
     try {
       const msg = new Message({
         user: msgData.user,
@@ -89,7 +77,6 @@ io.on('connection', socket => {
       });
       // creates new message object
       await Message.create(msg);
-
       const room = await Room.findOne({ id: msgData.room });
       // adds new message to list and updates message list
       console.log('room exists', msgData.room);

@@ -1,45 +1,40 @@
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ContactForm = () => {
   const form = useRef();
 
-  const sendEmail = (e) => {
+  const sendEmail = e => {
     e.preventDefault();
 
-    emailjs.
-      sendForm(
-        'service_15qvc26',
-        'template_h8azk7t', 
-        form.current, 
-        'iuzNDtNBVCkuhUrfg'
-        )
-      .then((result) => {
-          console.log(result.text);
-          alert("Message Sent!!!");
-          console.log("Message Sent");
-      }, (error) => {
-          console.log(error.text);
-      });
+    emailjs.sendForm('service_15qvc26', 'template_h8azk7t', form.current, 'iuzNDtNBVCkuhUrfg').then(
+      result => {
+        console.log(result.text);
+        alert('Message Sent!!!');
+        console.log('Message Sent');
+      },
+      error => {
+        console.log(error.text);
+      }
+    );
   };
 
   return (
-      <div style={{display: 'flex', justifyContent: 'center', paddingTop: '100px'}}>
-        <StyledContactForm>
+    <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '100px' }}>
+      <StyledContactForm>
         <h1>Contact Us</h1>
         <form ref={form} onSubmit={sendEmail}>
-        <label>Name</label>
-        <input type="text" name="user_name" />
-        <label>Email</label>
-        <input type="email" name="user_email" />
-        <label>Message</label>
-        <textarea name="message" />
-        <input type="submit" value="Send" />
-      </form>
+          <label>Name</label>
+          <input type="text" name="user_name" />
+          <label>Email</label>
+          <input type="email" name="user_email" />
+          <label>Message</label>
+          <textarea name="message" />
+          <input type="submit" value="Send" />
+        </form>
       </StyledContactForm>
-      </div>
-      
+    </div>
   );
 };
 
@@ -81,7 +76,7 @@ const StyledContactForm = styled.div`
     label {
       margin-top: 1rem;
     }
-    input[type="submit"] {
+    input[type='submit'] {
       margin-top: 2rem;
       cursor: pointer;
       background: rgb(249, 105, 14);

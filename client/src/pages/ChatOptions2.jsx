@@ -9,7 +9,7 @@ const Img = styled('img')({
   margin: 'auto',
   display: 'block',
   maxWidth: '100%',
-  maxHeight: '100%',
+  maxHeight: '100%'
 });
 
 export default function ComplexGrid() {
@@ -20,15 +20,12 @@ export default function ComplexGrid() {
         margin: 'auto',
         maxWidth: 500,
         flexGrow: 1,
-        backgroundColor: (theme) =>
-          theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+        backgroundColor: theme => (theme.palette.mode === 'dark' ? '#1A2027' : '#fff')
       }}
     >
       <Grid container spacing={2}>
         <Grid item>
-          <ButtonBase sx={{ width: 128, height: 128 }}>
-            {/* <Img alt="complex" src="" /> */}
-          </ButtonBase>
+          <ButtonBase sx={{ width: 128, height: 128 }}>{/* <Img alt="complex" src="" /> */}</ButtonBase>
         </Grid>
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
@@ -51,8 +48,6 @@ export default function ComplexGrid() {
           </Grid>
         </Grid>
       </Grid>
-
     </Paper>
-    
   );
 }

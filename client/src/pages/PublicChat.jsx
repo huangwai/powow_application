@@ -1,4 +1,4 @@
-import VideoChat from '../components/VideoChat'
+import VideoChat from '../components/VideoChat';
 
 function PublicChat() {
   return (
