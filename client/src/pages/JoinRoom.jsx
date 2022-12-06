@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState } from 'react';
 import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
@@ -15,6 +14,10 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
+import * as React from 'react';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
+import ScrollToBottom from 'react-scroll-to-bottom'
 
 /*
 Join Room page component
@@ -57,6 +60,30 @@ const JoinRoom = props => {
     await socket.emit('joinRoom', roomId);
     await navigate('/room/' + roomId, {state: {rtcToken: rtcToken, userName: userName}});
   }
+
+  let rooms = [
+    {
+      "Name": "room1",
+      "Occupancy": "2"
+    },
+    {
+      "Name": "room2",
+      "Occupancy": "3"
+    },
+    {
+      "Name": "room1",
+      "Occupancy": "2"
+    }
+  ]
+
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
+  
 
   JoinRoom.propTypes = {
     socket: PropTypes.object
@@ -113,6 +140,13 @@ const JoinRoom = props => {
             </Button>
           </CardActions>
         </Box>
+        <ScrollToBottom className="messageScrollContainer">
+          <Stack direction="column" spacing={0.3}>
+            {rooms.map(room => (
+              <Item>{room.Name}</Item>
+            ))}
+          </Stack>
+      </ScrollToBottom>
       </Card>
       </Stack>
     </div>
