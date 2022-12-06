@@ -18,6 +18,7 @@ import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
 import '../css/components/ChatRoom.css';
+import ScrollToBottom from 'react-scroll-to-bottom'
 
 export const ChatRoom = props => {
   const [message, setMessage] = useState('');
@@ -81,7 +82,7 @@ export const ChatRoom = props => {
 
   return (
     <div id="chatRoomPage">
-      <Box className="header" sx={{ flexGrow: 1 }}>
+      {/* <Box className="header" sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
             <IconButton size="large" color="inherit">
@@ -112,10 +113,14 @@ export const ChatRoom = props => {
             Successfully Joined!
           </Alert>
         </Collapse>
-      </Box>
+      </Box> */}
       <div className="chatContainer">
         <div className="body">
+        <ScrollToBottom className="messageScrollContainer">
           <Stack direction="column" spacing={0.3}>
+            
+
+            
             {allMessages.map((message, index) => {
               if (message.user === props.userName) {
                 return (
@@ -126,7 +131,7 @@ export const ChatRoom = props => {
                       justifyContent: 'flex-end'
                     }}
                   >
-                    <Chip sx={{ fontSize: 16, p: 1 }} color="primary" label={`${message.message}`} />
+                    <Chip sx={{ fontSize: 16, p: 1 }} className='chip' label={`${message.message}`} />
                   </Box>
                 );
               } else {
@@ -146,6 +151,7 @@ export const ChatRoom = props => {
               }
             })}
           </Stack>
+          </ScrollToBottom>
         </div>
         <div className="footer">
           <Box sx={{ display: 'flex' }}>

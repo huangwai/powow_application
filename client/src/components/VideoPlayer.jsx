@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import '../css/components/VideoPlayer.css';
 
 export const VideoPlayer = ({ user }) => {
   const ref = useRef();
@@ -14,8 +15,8 @@ export const VideoPlayer = ({ user }) => {
 
   return (
     <div>
-      Uid: {user.uid}
-      <div ref={ref} style={{ width: '200px', height: '200px' }}></div>
+      {/* Uid: {user.uid} */}
+      <div ref={ref} className='video-player'></div>
     </div>
   );
 };
