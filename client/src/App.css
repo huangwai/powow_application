@@ -1,3 +1,24 @@
 .App {
-    background-color: #001845;
+    background-color: #10131F;
+    height: 100%;
+  overflow: hidden;
+  background-repeat: no-repeat;
 }
+#root {
+    height: 100%;
+    overflow: hidden;
+  }
+  html,body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  }

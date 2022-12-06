@@ -14,21 +14,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import GridTemplateColumns from './pages/ChatOptions';
 import Footer from './components/Footer';
 import ComplexGrid from './pages/ChatOptions2';
-import Header from './components/Header';
-import PublicChat from './pages/PublicChat'
-
+// import Header from './components/Header';
+import PublicChat from './pages/PublicChat'; 
+import ResponsiveAppBar from './components/Header2';
 function App() {
   const socket = io.connect('http://localhost:3001');
 
   return (
     <div className="App">
 
-      <Header/>
+      {/* <Header/> */}
+      <ResponsiveAppBar/>
       <Box sx={{ display: 'flex' }}>
-        {/* <MenuBar /> */}
-        {/* <Header/> */}
          <Box component="main" sx={{ flexGrow: 1 }}>
-        {/* <Header/> */}
           <Routes>
             <Route exact path="/" element={<Home socket={socket} />} />
             <Route exact path="/createRoom" element={<CreateRoom socket={socket} />} />
@@ -42,7 +40,7 @@ function App() {
           </Routes>
         </Box>
       </Box>
-      {/* <Footer/> */}
+      <Footer/>
     </div>
   );
 }

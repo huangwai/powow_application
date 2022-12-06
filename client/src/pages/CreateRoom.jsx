@@ -110,24 +110,6 @@ const CreateRoom = props => {
         </Box>
       </Card>
       </Stack>
-        {/* <p>Create room</p>
-        <input
-          type="text"
-          placeholder="name"
-          onChange={e => {
-            setUsername(e.target.value);
-          }}
-        />
-        <input
-          type="text"
-          placeholder="room id"
-          onChange={e => {
-            setRoomId(e.target.value);
-          }}
-        />
-        <Button onClick={joinRoom} variant="contained">
-          Create Room
-        </Button> */}
       
     </div>
   );

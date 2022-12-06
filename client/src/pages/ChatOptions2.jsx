@@ -23,7 +23,7 @@ export default function ComplexGrid() {
   const navigate = useNavigate();
   return (
     <Stack direction="row" spacing={15} justifyContent="center" alignItems="center">
-      <Card sx={{ bgcolor: '#0466C8', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 1000 }} color="success">
+      <Card sx={{ bgcolor: '#141823', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 1000 }} color="success">
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
           <CardContent >
           <Typography sx={{ fontWeight: 'bold' }} variant="h4" color = "white" gutterBottom>
@@ -39,13 +39,13 @@ export default function ComplexGrid() {
         </Box>
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ mb: 10 }}>
           <CardActions>
-            <Button sx = {{backgroundColor: "white",fontWeight: 'bold'}} size="large" variant="outlined" onClick={() => navigate('/createRoom')}>
+            <Button sx = {{backgroundColor: "#0440CB",fontWeight: 'bold', color:"white"}} size="large" variant="outlined" onClick={() => navigate('/createRoom')}>
               Create
             </Button>
           </CardActions>
         </Box>
       </Card>
-      <Card sx={{ bgcolor: '#0466C8', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 500 }}>
+      <Card sx={{ bgcolor: '#141823', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 500 }}>
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
           <CardContent>
           <Typography  sx={{ fontWeight: 'bold' }} variant="h4" color = "white" gutterBottom>
@@ -61,13 +61,13 @@ export default function ComplexGrid() {
         </Box>
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
           <CardActions>
-            <Button sx = {{backgroundColor: "white",fontWeight: 'bold'}}size="large" variant="outlined" onClick={() => navigate('/joinRoom')}>
+            <Button sx = {{backgroundColor: "#0440CB",fontWeight: 'bold', color:"white"}}size="large" variant="outlined" onClick={() => navigate('/joinRoom')}>
               Join
             </Button>
           </CardActions>
         </Box>
       </Card>
-      <Card sx={{ bgcolor: '#0466C8', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 500 }}>
+      <Card sx={{ bgcolor: '#141823', minWidth: 400, maxWidth: 500, minHeight: 400, maxHeight: 500 }}>
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
           <CardContent >
           <Typography sx={{ fontWeight: 'bold' }} variant="h4" color = "white" gutterBottom>
@@ -83,7 +83,7 @@ export default function ComplexGrid() {
         </Box>
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
           <CardActions>
-            <Button sx = {{backgroundColor: "white",fontWeight: 'bold'}} size="large" variant="outlined" onClick={() => navigate('/publicChat')}>
+            <Button sx = {{backgroundColor: "#0440CB",fontWeight: 'bold', color:"white"}} size="large" variant="outlined" onClick={() => navigate('/publicChat')}>
               Explore
             </Button>
           </CardActions>

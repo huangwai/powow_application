@@ -12,10 +12,10 @@
 /*Loader Animation from Sharvari Raut https://codepen.io/sharur7/pen/oNeORzE*/
 
 .loader {
-  color: #F06000;
+  color: #0440CB;
   font-family: Consolas, Menlo, Monaco, monospace;
   font-weight: bold;
-  font-size: 4vh;
+  font-size: 5vh;
   opacity: .99;
   margin-bottom: 10px;
 }
