@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -11,6 +12,7 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 //import '../css/pages/CardOptions'
 
 const Img = styled('img')({
@@ -20,7 +22,44 @@ const Img = styled('img')({
   maxHeight: '100%'
 });
 
-export default function ComplexGrid() {
+
+
+const ComplexGrid = props => {
+  const [userName, setUsername] = useState('');
+  const [roomId, setRoomId] = useState('');
+  const socket = props.socket;
+  
+let rtcToken = ''
+const joinRoom = async () => {
+  setRoomId('-1')
+  let currentDate = new Date();
+  setUsername('user' + currentDate.getHours() + currentDate.getMinutes() + currentDate.getSeconds())
+  if (userName !== '' && roomId !== '') {
+    let url = `http://localhost:3001/rtc/${roomId}/audience/uid/${userName}`;
+    await fetch(url, { method: 'GET' })
+      .then(response => response.json())
+      .then(data => {
+        rtcToken = data.rtcToken;
+        console.log("Token12: " + rtcToken)
+      })
+    url = `http://localhost:3001/room/${roomId}`;
+    await fetch(url, { method: 'GET' })
+      .then(response => response.json())
+      .then(() => {
+        // room exists so join room
+        console.log(`joined room userName: ${userName}, roomId: ${roomId}`);
+        join(rtcToken)
+      })
+  }
+};
+
+  const join = async(rtcToken) => {
+    await socket.emit('joinRoom', roomId);
+    await navigate('/room/' + roomId, {state: {rtcToken: rtcToken, userName: userName}});
+  }
+  ComplexGrid.propTypes = {
+    socket: PropTypes.object
+  };
   const navigate = useNavigate();
   return (
     <Stack direction="row" spacing={15} justifyContent="center" alignItems="center" className='cards'>
@@ -84,7 +123,7 @@ export default function ComplexGrid() {
         </Box>
         <Box display="flex" justifyContent="center" sx={{ mb: 5, alignItems: "flex-end" }}>
           <CardActions>
-            <Button sx = {{backgroundColor: "#0440CB",fontWeight: 'bold', color:"white", width:200}} size="large" variant="outlined" onClick={() => navigate('/publicChat')}>
+            <Button sx = {{backgroundColor: "#0440CB",fontWeight: 'bold', color:"white", width:200}} size="large" variant="outlined" onClick={joinRoom}>
               Explore
             </Button>
           </CardActions>
@@ -93,3 +132,4 @@ export default function ComplexGrid() {
     </Stack>
   );
 }
+export default ComplexGrid
