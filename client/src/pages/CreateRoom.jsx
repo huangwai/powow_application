@@ -1,7 +1,6 @@
 //import HomeButton from '../components/HomeButton.jsx';
 import React from 'react';
 import { useState } from 'react';
-import { VideoRoom } from './VideoRoom';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 
@@ -48,7 +47,6 @@ const CreateRoom = props => {
       ) : (
         <>
           <p>Created room {roomId}</p>
-          <VideoRoom socket={socket} userName={userName} roomId={roomId}></VideoRoom>
         </>
       )}
     </>

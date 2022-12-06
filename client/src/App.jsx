@@ -17,6 +17,8 @@ import Footer from './components/Footer';
 import ComplexGrid from './pages/ChatOptions2';
 import Header from './components/Header';
 import ResponsiveAppBar from './components/Header2';
+import PublicChat from './pages/PublicChat'
+
 function App() {
   const socket = io.connect('http://localhost:3001');
 
@@ -36,7 +38,7 @@ function App() {
             <Route exact path="/about" element={<About />} />
             <Route exact path="/chatOptions" element={<GridTemplateColumns />} />
             <Route exact path="/contact" element={<ContactForm />} />
-            <Route exact path="/publicChat" element={<Chat />} />
+            <Route exact path="/publicChat" element={<PublicChat />} />
             <Route exact path="/*" element={<NoPage />} />
           </Routes>
         </Box>
