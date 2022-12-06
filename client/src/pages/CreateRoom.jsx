@@ -100,14 +100,14 @@ const CreateRoom = props => {
           <Typography sx={{ fontWeight: 'bold' }} variant="h4" color = "white" gutterBottom>
             Create room
             </Typography>
-            <TextField sx={{ input: { color: 'white' } }} id="outlined-basic" label="Name" variant="outlined" 
+            <TextField sx={{backgroundColor: "#FFF", m: 1, width: '25ch' }} id="outlined-basic" label="Name" variant="outlined" 
           type="text"
           placeholder="name"
           onChange={e => {
             setUsername(e.target.value);
           }}
         />
-            <TextField sx={{ input: { color: 'white' } }} id="outlined-basic" label="Room ID" variant="outlined"
+            <TextField sx={{backgroundColor: "#FFF", m: 1, width: '25ch' }} id="outlined-basic" label="Room ID" variant="outlined"
           type="text"
           placeholder="room id"
           onChange={e => {

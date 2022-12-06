@@ -24,7 +24,7 @@ const Home = props => {
   return (
     <div className="Home">
       <Stack direction="row" justifyContent="center" alignItems="center">
-      <Card sx={{ m:10, textDecoration: 'none', bgcolor: '#141823'}}>
+      <Card sx={{ m:10, textDecoration: 'none', bgcolor: '#10131F'}}>
       <Box display="flex" justifyContent="center" alignItems="center" sx={{ m:3, mt:5, ml: 5, mr: 5 }}>
           <CardContent> 
             <Typography variant="h4" color = "white" gutterBottom >

@@ -32,7 +32,7 @@ function App() {
             <Route exact path="/createRoom" element={<CreateRoom socket={socket} />} />
             <Route exact path="/joinRoom" element={<JoinRoom socket={socket} />} />
             <Route exact path="/about" element={<About />} />
-            <Route exact path="/chatOptions" element={<ComplexGrid />} />
+            <Route exact path="/chatOptions" element={<ComplexGrid socket={socket}/>} />
             <Route exact path="/contact" element={<ContactForm />} />
             <Route exact path="/publicChat" element={<PublicChat socket={socket} />} />
             <Route exact path="/room/:id" element={<Room socket={socket} userName={'temp'} />} />
