@@ -28,8 +28,8 @@ const VideoChat = props => {
   const TOKEN = props.rtcToken;
   const CHANNEL = props.roomId;
 
-  console.log("Token: " + TOKEN)
-  console.log("TokenHi: " + props.userName)
+  console.log('Token: ' + TOKEN);
+  console.log('TokenHi: ' + props.userName);
 
   const handleUserJoined = async (user, mediaType) => {
     await client.subscribe(user, mediaType);
@@ -39,7 +39,7 @@ const VideoChat = props => {
     }
 
     if (mediaType === 'audio') {
-       //user.audioTrack.play()
+      //user.audioTrack.play()
     }
   };
 
@@ -48,7 +48,6 @@ const VideoChat = props => {
   };
 
   useEffect(() => {
-
     client.on('user-published', handleUserJoined);
     client.on('user-left', handleUserLeft);
 
@@ -82,11 +81,7 @@ const VideoChat = props => {
 
   return (
     <div>
-      <Stack 
-        direction="row" 
-        spacing={2}
-        alignItems="center"
-        justifyContent="center">
+      <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
         {users.map(user => (
           <VideoPlayer key={user.uid} user={user} />
         ))}

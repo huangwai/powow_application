@@ -42,14 +42,12 @@ router.post('/:id/disconnect', async (req, res) => {
     if (room !== null) {
       await Room.updateOne({ id: req.params.id }, { $set: { userCount: room.userCount - 1 } });
       res.status(200).send('200');
-    }
-    else {
+    } else {
       res.status(500).json({ message: e.message });
     }
-  }
-  catch (e) {
+  } catch (e) {
     res.status(500).json({ message: e.message });
   }
-})
+});
 
 module.exports = router;

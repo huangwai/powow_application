@@ -21,7 +21,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '100px', color: "#FFFFFF"}}>
+    <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '100px', color: '#FFFFFF' }}>
       <StyledContactForm>
         <h1>Contact Us</h1>
         <br></br>
@@ -49,16 +49,16 @@ const StyledContactForm = styled.div`
     flex-direction: column;
     width: 100%;
     font-size: 16px;
-    color: #FFFFFF;
+    color: #ffffff;
     input {
       width: 100%;
       height: 35px;
       padding: 7px;
       outline: none;
       border-radius: 5px;
-      border: 1px solid #0440CB;
+      border: 1px solid #0440cb;
       &:focus {
-        border: 2px solid #0440CB;
+        border: 2px solid #0440cb;
       }
     }
     textarea {
@@ -70,9 +70,9 @@ const StyledContactForm = styled.div`
       padding: 7px;
       outline: none;
       border-radius: 5px;
-      border: 1px solid #0440CB;
+      border: 1px solid #0440cb;
       &:focus {
-        border: 2px solid #0440CB;
+        border: 2px solid #0440cb;
       }
     }
     label {
@@ -81,8 +81,8 @@ const StyledContactForm = styled.div`
     input[type='submit'] {
       margin-top: 2rem;
       cursor: pointer;
-      background: #0440CB;
-      color: #FFFFFF;
+      background: #0440cb;
+      color: #ffffff;
       border: none;
     }
   }

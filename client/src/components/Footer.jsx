@@ -9,7 +9,6 @@ const Footer = () => {
         <Row>
           <Column>
             <FooterLink href="/">Home</FooterLink>
-
           </Column>
           <Column>
             {/* <Heading>Chat</Heading> */}
@@ -25,7 +24,7 @@ const Footer = () => {
             {/* <Heading>Social Media</Heading> */}
             <FooterLink href="/chatOptions">Chat</FooterLink>
 
-              {/* <i className="fab fa-facebook-f">
+            {/* <i className="fab fa-facebook-f">
                 <span style={{ marginLeft: '10px' }}>Facebook</span>
               </i>
             </FooterLink>

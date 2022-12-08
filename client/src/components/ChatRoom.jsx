@@ -18,7 +18,7 @@ import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
 import '../css/components/ChatRoom.css';
-import ScrollToBottom from 'react-scroll-to-bottom'
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 export const ChatRoom = props => {
   const [message, setMessage] = useState('');
@@ -114,47 +114,59 @@ export const ChatRoom = props => {
           </Alert>
         </Collapse>
       </Box> */}
-      
+
       <div className="chatContainer">
         <div className="body">
-        <ScrollToBottom className="messageScrollContainer">
-          <Stack direction="column" spacing={.3}>
-            {allMessages.map((message, index) => {
-              if (message.user === props.userName) {
-                return (
-                  <Box
-                    key={index}
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'flex-end'
-                    }}
-                  >
-                    <Chip sx={{ fontSize: 16, p: 1, backgroundColor:'#0440CB', color: '#D6E4E5'}} className='chip' label={`${message.message}`} />
-                  </Box>
-                );
-              } else {
-                if (index !== 0 && allMessages[index - 1].user === allMessages[index].user) {
+          <ScrollToBottom className="messageScrollContainer">
+            <Stack direction="column" spacing={0.3}>
+              {allMessages.map((message, index) => {
+                if (message.user === props.userName) {
+                  return (
+                    <Box
+                      key={index}
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'flex-end'
+                      }}
+                    >
+                      <Chip
+                        sx={{ fontSize: 16, p: 1, backgroundColor: '#0440CB', color: '#D6E4E5' }}
+                        className="chip"
+                        label={`${message.message}`}
+                      />
+                    </Box>
+                  );
+                } else {
+                  if (index !== 0 && allMessages[index - 1].user === allMessages[index].user) {
+                    return (
+                      <div key={index}>
+                        <Chip
+                          sx={{ fontSize: 16, p: 1, backgroundColor: '#3d4451', color: '#D6E4E5' }}
+                          variant="Filled"
+                          label={`${message.message}`}
+                        />
+                      </div>
+                    );
+                  }
                   return (
                     <div key={index}>
-                      <Chip sx={{ fontSize: 16, p: 1, backgroundColor:'#3d4451', color: '#D6E4E5'}} variant="Filled" label={`${message.message}`} />
+                      <p className="messageHeader">{`${message.user} ${message.time}`}</p>
+                      <Chip
+                        sx={{ fontSize: 16, p: 2, backgroundColor: '#3d4451', color: '#D6E4E5' }}
+                        variant="Filled"
+                        label={`${message.message}`}
+                      />
                     </div>
                   );
                 }
-                return (
-                  <div key={index}>
-                    <p className="messageHeader">{`${message.user} ${message.time}`}</p>
-                    <Chip sx={{ fontSize: 16, p: 2, backgroundColor:'#3d4451', color: '#D6E4E5'}} variant="Filled" label={`${message.message}`} />
-                  </div>
-                );
-              }
-            })}
-          </Stack>
+              })}
+            </Stack>
           </ScrollToBottom>
         </div>
         <div className="footer">
           <Box sx={{ display: 'flex' }}>
             <TextField
-              sx={{ flexGrow: 1}}
+              sx={{ flexGrow: 1 }}
               className="messageField"
               size="small"
               value={message}

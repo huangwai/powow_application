@@ -24,23 +24,28 @@ const Home = props => {
   return (
     <div className="Home">
       <Stack direction="row" justifyContent="center" alignItems="center">
-      <Card sx={{ m:10, textDecoration: 'none', bgcolor: '#10131F'}}>
-      <Box display="flex" justifyContent="center" alignItems="center" sx={{ m:3, mt:5, ml: 5, mr: 5 }}>
-          <CardContent> 
-            <Typography variant="h4" color = "white" gutterBottom >
-            Reconnect or Explore new conversations with friends accross the web
-            </Typography>
-          </CardContent>
-        </Box>
-        <Box display="flex" justifyContent="center" sx={{ mb: 10, alignItems: "flex-end" }}>
-          <CardActions>
-            <Button sx = {{backgroundColor: "#0440CB",fontWeight: 'bold', color:"#FFFFFF"}} size="large" variant="outlined" href="/chatOptions">
-            Start exploring
-            </Button>
-          </CardActions>
-        </Box>
-      </Card>
-      {/* <box className="loader">
+        <Card sx={{ m: 10, textDecoration: 'none', bgcolor: '#10131F' }}>
+          <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 3, mt: 5, ml: 5, mr: 5 }}>
+            <CardContent>
+              <Typography variant="h4" color="white" gutterBottom>
+                Reconnect or Explore new conversations with friends accross the web
+              </Typography>
+            </CardContent>
+          </Box>
+          <Box display="flex" justifyContent="center" sx={{ mb: 10, alignItems: 'flex-end' }}>
+            <CardActions>
+              <Button
+                sx={{ backgroundColor: '#0440CB', fontWeight: 'bold', color: '#FFFFFF' }}
+                size="large"
+                variant="outlined"
+                href="/chatOptions"
+              >
+                Start exploring
+              </Button>
+            </CardActions>
+          </Box>
+        </Card>
+        {/* <box className="loader">
                     |<span>o</span><span>_</span><span>o</span>|<span>^</span><span>_</span><span>^</span>|<span>+</span><span>_</span><span>+</span>|
       </box> */}
       </Stack>

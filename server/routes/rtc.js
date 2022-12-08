@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const {RtcTokenBuilder, RtcRole, RtmTokenBuilder, RtmRole} = require('agora-access-token');
+const { RtcTokenBuilder, RtcRole, RtmTokenBuilder, RtmRole } = require('agora-access-token');
 const router = express.Router();
 
 dotenv.config();
@@ -13,7 +13,7 @@ const nocache = (_, resp, next) => {
   resp.header('Expires', '-1');
   resp.header('Pragma', 'no-cache');
   next();
-}
+};
 
 const generateRTCToken = (req, resp) => {
   // set response header
@@ -21,21 +21,21 @@ const generateRTCToken = (req, resp) => {
   // get channel name
   const channelName = req.params.channel;
   if (!channelName) {
-    return resp.status(400).json({ 'error': 'channel is required' });
+    return resp.status(400).json({ error: 'channel is required' });
   }
   // get uid
   let uid = req.params.uid;
-  if(!uid || uid === '') {
-    return resp.status(400).json({ 'error': 'uid is required' });
+  if (!uid || uid === '') {
+    return resp.status(400).json({ error: 'uid is required' });
   }
   // get role
   let role;
   if (req.params.role === 'publisher') {
     role = RtcRole.PUBLISHER;
   } else if (req.params.role === 'audience') {
-    role = RtcRole.SUBSCRIBER
+    role = RtcRole.SUBSCRIBER;
   } else {
-    return resp.status(400).json({ 'error': 'role is incorrect' });
+    return resp.status(400).json({ error: 'role is incorrect' });
   }
   // get the expire time
   let expireTime = req.query.expiry;
@@ -54,12 +54,12 @@ const generateRTCToken = (req, resp) => {
   } else if (req.params.tokentype === 'uid') {
     token = RtcTokenBuilder.buildTokenWithUid(APP_ID, APP_CERTIFICATE, channelName, uid, role, privilegeExpireTime);
   } else {
-    return resp.status(400).json({ 'error': 'token type is invalid' });
+    return resp.status(400).json({ error: 'token type is invalid' });
   }
   // return the token
-  return resp.json({ 'rtcToken': token });
-}
+  return resp.json({ rtcToken: token });
+};
 
-router.get('/:channel/:role/:tokentype/:uid', nocache , generateRTCToken);
+router.get('/:channel/:role/:tokentype/:uid', nocache, generateRTCToken);
 
 module.exports = router;

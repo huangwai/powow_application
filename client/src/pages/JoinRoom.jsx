@@ -17,8 +17,8 @@ import TextField from '@mui/material/TextField';
 import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-import ScrollToBottom from 'react-scroll-to-bottom'
-import '../css/pages/JoinRoom.css'
+import ScrollToBottom from 'react-scroll-to-bottom';
+import '../css/pages/JoinRoom.css';
 
 /*
 Join Room page component
@@ -30,10 +30,10 @@ const JoinRoom = props => {
   const socket = props.socket;
   const navigate = useNavigate();
 
-  let rtcToken = ''
-  const [rooms, setRooms] = useState([])
+  let rtcToken = '';
+  const [rooms, setRooms] = useState([]);
 
-  const joinRoom = async (roomID) => {
+  const joinRoom = async roomID => {
     if (roomID !== '') {
       setRoomId(roomID);
     }
@@ -44,15 +44,15 @@ const JoinRoom = props => {
         .then(response => response.json())
         .then(data => {
           rtcToken = data.rtcToken;
-          console.log("Token12: " + rtcToken)
-        })
+          console.log('Token12: ' + rtcToken);
+        });
       url = `http://localhost:3001/room/${roomId}`;
       await fetch(url, { method: 'GET' })
         .then(response => response.json())
         .then(() => {
           // room exists so join room
           console.log(`joined room userName: ${userName}, roomId: ${roomId}`);
-          join(rtcToken)
+          join(rtcToken);
         })
         // there was no room with the id so send error unable to join room
         .catch(() => {
@@ -67,10 +67,10 @@ const JoinRoom = props => {
     await fetch(url, { method: 'GET' })
       .then(response => response.json())
       // successfully joined room
-      .then(data => setRooms(data))
-      // redirect to error if room does not exist
-      //.catch(() => navigate('error'));
-  }
+      .then(data => setRooms(data));
+    // redirect to error if room does not exist
+    //.catch(() => navigate('error'));
+  };
   useEffect(() => {
     showRooms();
   }, []);
@@ -80,19 +80,18 @@ const JoinRoom = props => {
   //   joinRoom()
   // }
 
-  const join = async(rtcToken) => {
+  const join = async rtcToken => {
     await socket.emit('joinRoom', roomId);
-    await navigate('/room/' + roomId, {state: {rtcToken: rtcToken, userName: userName}});
-  }
+    await navigate('/room/' + roomId, { state: { rtcToken: rtcToken, userName: userName } });
+  };
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: 'center',
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.secondary
   }));
-  
 
   JoinRoom.propTypes = {
     socket: PropTypes.object
@@ -120,47 +119,65 @@ const JoinRoom = props => {
         </Alert>
       </Collapse>
       <Stack direction="row" justifyContent="center" alignItems="center">
-      <Card sx={{ m:10, textDecoration: 'none', bgcolor: '#141823'}}>
-        <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
-          <CardContent >
-          <Typography variant="h4" color = "white" gutterBottom>
-            Join room
-            </Typography>
-            <TextField id="outlined-start-adornment"
-          sx={{backgroundColor: "#FFF", m: 1, width: '25ch' }} label="Name" variant="outlined" 
-           type="text"
-           placeholder="name"
-           onChange={e => {
-             setUsername(e.target.value);
-           }}
-        />
-            <TextField sx={{backgroundColor: "#FFF", m: 1, width: '25ch' }} id="outlined-basic" label="Room ID" variant="outlined"
-          type="text"
-          placeholder="room id"
-          onChange={e => {
-            setRoomId(e.target.value);
-          }}
-        />
-          </CardContent>
-        </Box>
-        <Box display="flex" justifyContent="center" alignItems="center" sx={{ mb: 10 }}>
-          <CardActions>
-          <Button sx = {{backgroundColor: "white",fontWeight: 'bold'}} size="large" variant="outlined" onClick={joinRoom}>
-            Join Room
-            </Button>
-          </CardActions>
-        </Box>
-        <ScrollToBottom className="messageScrollContainer">
-          <Stack direction="column" spacing={0.3}>
-            {rooms.map((room, index) => (
-                <Button sx={{color: '#fff', display: "flex", justifyContent: "space-between"}} variant="outlined" key={index} className='rooms' onClick={() => joinRoom(room.id)}>
+        <Card sx={{ m: 10, textDecoration: 'none', bgcolor: '#141823' }}>
+          <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 10 }}>
+            <CardContent>
+              <Typography variant="h4" color="white" gutterBottom>
+                Join room
+              </Typography>
+              <TextField
+                id="outlined-start-adornment"
+                sx={{ backgroundColor: '#FFF', m: 1, width: '25ch' }}
+                label="Name"
+                variant="outlined"
+                type="text"
+                placeholder="name"
+                onChange={e => {
+                  setUsername(e.target.value);
+                }}
+              />
+              <TextField
+                sx={{ backgroundColor: '#FFF', m: 1, width: '25ch' }}
+                id="outlined-basic"
+                label="Room ID"
+                variant="outlined"
+                type="text"
+                placeholder="room id"
+                onChange={e => {
+                  setRoomId(e.target.value);
+                }}
+              />
+            </CardContent>
+          </Box>
+          <Box display="flex" justifyContent="center" alignItems="center" sx={{ mb: 10 }}>
+            <CardActions>
+              <Button
+                sx={{ backgroundColor: 'white', fontWeight: 'bold' }}
+                size="large"
+                variant="outlined"
+                onClick={joinRoom}
+              >
+                Join Room
+              </Button>
+            </CardActions>
+          </Box>
+          <ScrollToBottom className="messageScrollContainer">
+            <Stack direction="column" spacing={0.3}>
+              {rooms.map((room, index) => (
+                <Button
+                  sx={{ color: '#fff', display: 'flex', justifyContent: 'space-between' }}
+                  variant="outlined"
+                  key={index}
+                  className="rooms"
+                  onClick={() => joinRoom(room.id)}
+                >
                   <div>{`${room.id}`}</div>
                   <div>{index}/4</div>
                 </Button>
-            ))}
-          </Stack>
-      </ScrollToBottom>
-      </Card>
+              ))}
+            </Stack>
+          </ScrollToBottom>
+        </Card>
       </Stack>
     </div>
   );
