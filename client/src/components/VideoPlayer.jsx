@@ -14,9 +14,6 @@ export const VideoPlayer = ({ user }) => {
   };
 
   return (
-    <div>
-      {/* Uid: {user.uid} */}
-      <div ref={ref} className="video-player"></div>
-    </div>
+    <div ref={ref} className="video-player"></div>
   );
 };
