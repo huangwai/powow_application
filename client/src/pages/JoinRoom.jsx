@@ -27,6 +27,7 @@ const JoinRoom = props => {
   const [userName, setUsername] = useState('');
   const [roomId, setRoomId] = useState('');
   const [error, setError] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState('');
   const socket = props.socket;
   const navigate = useNavigate();
 
@@ -57,6 +58,7 @@ const JoinRoom = props => {
         // there was no room with the id so send error unable to join room
         .catch(() => {
           setError(true);
+          setErrorMessage('There was no room with the id');
           console.log('cant there was no room with the id');
         });
     }
@@ -107,6 +109,7 @@ const JoinRoom = props => {
               color="inherit"
               size="small"
               onClick={() => {
+                setErrorMessage('There was no room with the id');
                 setError(false);
               }}
             >
@@ -115,7 +118,7 @@ const JoinRoom = props => {
           }
           sx={{ mb: 2 }}
         >
-          There was no room with the id
+          {errorMessage}
         </Alert>
       </Collapse>
       <Stack direction="row" justifyContent="center" alignItems="center">
@@ -126,6 +129,7 @@ const JoinRoom = props => {
                 Join room
               </Typography>
               <TextField
+                required
                 id="outlined-start-adornment"
                 sx={{ backgroundColor: '#FFF', m: 1, width: '25ch' }}
                 label="Name"
@@ -169,7 +173,13 @@ const JoinRoom = props => {
                   variant="outlined"
                   key={index}
                   className="rooms"
-                  onClick={() => joinRoom(room.id)}
+                  onClick={() => {
+                    if (userName === '') {
+                      setError(true);
+                      setErrorMessage('User name is required');
+                    }
+                    joinRoom(room.id);
+                  }}
                 >
                   <div>{`${room.id}`}</div>
                   <div>{index}/6</div>
