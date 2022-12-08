@@ -26,6 +26,7 @@ export const ChatRoom = props => {
   const [alert, setAlert] = useState(true);
   const socket = props.socket;
 
+
   //async to wait for message to be sent
   const sendMessage = async () => {
     if (message !== '') {
@@ -50,16 +51,6 @@ export const ChatRoom = props => {
     const url = `http://localhost:3001/room/${props.roomId}`;
     await fetch(url, { method: 'DELETE' });
   };
-
-  useEffect(() => {
-    //listening for new messages
-    socket.on('receivedMessage', msgData => {
-      console.log('received message', msgData);
-      setAllMessages(prev => [...prev, msgData]);
-    });
-  }, [socket]);
-
-  useEffect(() => {
     // fetch persistent messages from db
     const fetchMsg = async room => {
       const url = `http://localhost:3001/room/${room}`;
@@ -70,6 +61,17 @@ export const ChatRoom = props => {
       //const data = await res.json();
       //setAllMessages(data.messages);
     };
+  useEffect(() => {
+    //listening for new messages
+    socket.on('receivedMessage', msgData => {
+      console.log('received message', msgData);
+      setAllMessages(prev => [...prev, msgData]);
+    });
+    fetchMsg(props.roomId);
+  }, [socket]);
+
+  useEffect(() => {
+
     fetchMsg(props.roomId);
     // successfully joined room
   }, []);

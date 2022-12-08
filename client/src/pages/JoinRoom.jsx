@@ -172,7 +172,7 @@ const JoinRoom = props => {
                   onClick={() => joinRoom(room.id)}
                 >
                   <div>{`${room.id}`}</div>
-                  <div>{index}/4</div>
+                  <div>{index}/6</div>
                 </Button>
               ))}
             </Stack>
