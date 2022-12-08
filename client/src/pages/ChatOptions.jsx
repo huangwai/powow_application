@@ -29,7 +29,7 @@ const ComplexGrid = props => {
 
   let rtcToken = '';
   const joinRoom = async () => {
-    setRoomId('123');
+    setRoomId('public');
     let currentDate = new Date();
     setUsername('user' + currentDate.getHours() + currentDate.getMinutes() + currentDate.getSeconds());
     if (userName !== '' && roomId !== '') {
