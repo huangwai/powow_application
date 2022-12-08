@@ -1,5 +1,4 @@
 // 404 page design from https://codepen.io/genarocolusso/pen/XWbGMLp
-import HomeButton from '../components/HomeButton.jsx';
 
 import React from 'react';
 import '../css/pages/NoPages.css';

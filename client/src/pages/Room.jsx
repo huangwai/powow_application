@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { ChatRoom } from '../components/ChatRoom';
+import { ChatRoom } from '../components/Chat';
 import { useNavigate, useLocation } from 'react-router-dom';
-import VideoChat from '../components/VideoChat';
+import Video from '../components/Video';
 import '../css/pages/PublicChat.css';
 
 export const Room = props => {
@@ -18,7 +18,7 @@ export const Room = props => {
     await fetch(url, { method: 'GET' })
       .then(response => response.json())
       // successfully joined room
-      .then(data => setAllMessages(data.messages));
+      // .then(data => setAllMessages(data.messages));
     // redirect to error if room does not exist
     //.catch(() => navigate('error'));
   };
@@ -48,7 +48,7 @@ export const Room = props => {
   return (
     <div className="public-chat">
       <div className="one">
-        <VideoChat socket={props.socket} userName={userName} roomId={String(id)} rtcToken={rtcToken} />
+        <Video socket={props.socket} userName={userName} roomId={String(id)} rtcToken={rtcToken} />
       </div>
       <ChatRoom socket={props.socket} userName={userName} roomId={String(id)} />
     </div>

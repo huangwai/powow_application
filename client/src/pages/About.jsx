@@ -1,6 +1,4 @@
 import React from 'react';
-import logo from '../images/powowlogo.png';
-import ContactForm from '../components/ContactForm';
 import Typography from '@mui/material/Typography';
 
 import Box from '@mui/material/Box';

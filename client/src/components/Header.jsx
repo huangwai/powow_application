@@ -1,39 +1,81 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import '../css/components/HeaderStyle.css';
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import '../css/components/Header.css';
 
-function Header() {
+const pages = ['Home', 'Chat', 'About'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+function ResponsiveAppBar() {
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenNavMenu = event => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = event => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Container>
-        <Navbar.Brand href="/">POWOW</Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/chatOptions">Chat</Nav.Link>
-            <Nav.Link href="/about">About</Nav.Link>
-            {/* <NavDropdown title="Chat" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="chatOptions">Public Chat</NavDropdown.Item>
-              <NavDropdown.Item href="#joinRoom">
-                Join Room
-              </NavDropdown.Item>
-              <NavDropdown.Item href="createRoom">Create Room</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown> */}
-          </Nav>
-          <Nav>
-            <Nav.Link href="/contact">Contact</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <AppBar position="static">
+      {/* <Container maxWidth="xl"> */}
+      <Toolbar sx={{ bgcolor: '#10131F' }} disableGutters>
+        <Typography
+          variant="h6"
+          noWrap
+          component="a"
+          href="/"
+          sx={{
+            mr: 2,
+            display: { xs: 'none', md: 'flex' },
+            fontWeight: 700,
+            letterSpacing: '.3rem',
+            color: 'inherit',
+            textDecoration: 'none',
+            fontSize: '30px',
+            pl: 2
+          }}
+        >
+          POWOW
+        </Typography>
+
+        <Box sx={{ pr: 2, flexGrow: 1, display: { xs: 'flex', md: 'flex' }, justifyContent: 'flex-end' }}>
+          <Button href="/" sx={{ my: 2, color: 'white', display: 'block', fontSize: '20px', paddingInlineStart: 2 }}>
+            Home
+          </Button>
+          <Button
+            href="/about"
+            sx={{ my: 2, color: 'white', display: 'block', fontSize: '20px', paddingInlineStart: 2 }}
+          >
+            About
+          </Button>
+          <Button
+            href="/chatOptions"
+            sx={{ my: 2, color: 'white', display: 'block', fontSize: '20px', paddingInlineStart: 2 }}
+          >
+            Chat
+          </Button>
+          <Button
+            href="/contact"
+            sx={{ my: 2, color: 'white', display: 'block', fontSize: '20px', paddingInlineStart: 2 }}
+          >
+            Contact
+          </Button>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 }
-
-export default Header;
+export default ResponsiveAppBar;
