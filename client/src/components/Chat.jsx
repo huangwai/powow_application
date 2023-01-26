@@ -1,29 +1,18 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import MenuIcon from '@mui/icons-material/Menu';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import CloseIcon from '@mui/icons-material/Close';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import SendIcon from '@mui/icons-material/Send';
 import Box from '@mui/material/Box';
-import Alert from '@mui/material/Alert';
-import Collapse from '@mui/material/Collapse';
 import '../css/components/ChatRoom.css';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
 export const ChatRoom = props => {
   const [message, setMessage] = useState('');
   const [allMessages, setAllMessages] = useState([]);
-  const [alert, setAlert] = useState(true);
   const socket = props.socket;
 
 
@@ -84,39 +73,6 @@ export const ChatRoom = props => {
 
   return (
     <div id="chatRoomPage">
-      {/* <Box className="header" sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton size="large" color="inherit">
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" sx={{ flexGrow: 1 }}>
-              Room: {props.roomId}
-            </Typography>
-            <Button color="inherit" startIcon={<PeopleAltIcon />} />
-            <Button color="inherit" onClick={clearMessage} startIcon={<DeleteIcon />} />
-          </Toolbar>
-        </AppBar>
-        <Collapse in={alert}>
-          <Alert
-            action={
-              <IconButton
-                aria-label="close"
-                color="inherit"
-                size="small"
-                onClick={() => {
-                  setAlert(false);
-                }}
-              >
-                <CloseIcon fontSize="inherit" />
-              </IconButton>
-            }
-          >
-            Successfully Joined!
-          </Alert>
-        </Collapse>
-      </Box> */}
-
       <div className="chatContainer">
         <div className="body">
           <ScrollToBottom className="messageScrollContainer">

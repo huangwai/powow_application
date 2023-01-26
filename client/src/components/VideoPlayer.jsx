@@ -13,7 +13,5 @@ export const VideoPlayer = ({ user }) => {
     user: PropTypes.object
   };
 
-  return (
-    <div ref={ref} className="video-player"></div>
-  );
+  return <div ref={ref} className="video-player"></div>;
 };

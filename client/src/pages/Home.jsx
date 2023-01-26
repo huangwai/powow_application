@@ -5,7 +5,6 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import { ChatRoom } from '../components/Chat';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
@@ -14,10 +13,7 @@ import '../css/pages/Home.css';
 /*
 Join Room page component
  */
-const Home = props => {
-  let currentDate = new Date();
-  let userName = 'user' + currentDate.getHours() + currentDate.getMinutes() + currentDate.getSeconds();
-
+const Home = () => {
   Home.propTypes = {
     socket: PropTypes.object
   };
@@ -28,7 +24,7 @@ const Home = props => {
           <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 3, mt: 5, ml: 5, mr: 5 }}>
             <CardContent>
               <Typography variant="h4" color="white" gutterBottom>
-                Reconnect or Explore new conversations with friends accross the web
+                Reconnect or Explore new conversations with friends across the web
               </Typography>
             </CardContent>
           </Box>

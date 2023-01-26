@@ -10,13 +10,10 @@ import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import * as React from 'react';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import '../css/pages/JoinRoom.css';
 
@@ -64,7 +61,7 @@ const JoinRoom = props => {
     }
   };
 
-  const showRooms = async room => {
+  const showRooms = async () => {
     const url = `http://localhost:3001/room/all`;
     await fetch(url, { method: 'GET' })
       .then(response => response.json())
@@ -86,14 +83,6 @@ const JoinRoom = props => {
     await socket.emit('joinRoom', roomId);
     await navigate('/room/' + roomId, { state: { rtcToken: rtcToken, userName: userName } });
   };
-
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary
-  }));
 
   JoinRoom.propTypes = {
     socket: PropTypes.object

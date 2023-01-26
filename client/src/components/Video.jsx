@@ -4,7 +4,7 @@ import { VideoPlayer } from './VideoPlayer';
 import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import '../css/components/VideoChat.css';
-import Box   from '@mui/material/Box';
+import Box from '@mui/material/Box';
 
 //const uuid = require("uuid/v4")
 
@@ -76,6 +76,7 @@ const VideoChat = props => {
       }
       client.off('user-published', handleUserJoined);
       client.off('user-left', handleUserLeft);
+      // eslint-disable-next-line no-undef
       client.unpublish(tracks).then(() => client.leave());
     };
   }, []);
