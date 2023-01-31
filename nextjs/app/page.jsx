@@ -1,5 +1,5 @@
+'use client';
 import React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -8,18 +8,15 @@ import CardContent from '@mui/material/CardContent';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import '../css/pages/Home.css';
+//import '../css/pages/Home.css';
 
 /*
 Join Room page component
  */
 const Home = () => {
-  Home.propTypes = {
-    socket: PropTypes.object
-  };
   return (
     <div className="Home">
-      <Stack direction="row" justifyContent="center" alignItems="center">
+      <Stack>
         <Card sx={{ m: 10, textDecoration: 'none', bgcolor: '#10131F' }}>
           <Box display="flex" justifyContent="center" alignItems="center" sx={{ m: 3, mt: 5, ml: 5, mr: 5 }}>
             <CardContent>

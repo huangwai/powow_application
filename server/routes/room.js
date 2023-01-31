@@ -43,7 +43,7 @@ router.post('/:id/disconnect', async (req, res) => {
       await Room.updateOne({ id: req.params.id }, { $set: { userCount: room.userCount - 1 } });
       res.status(200).send('200');
     } else {
-      res.status(500).json({ message: e.message });
+      res.status(500).json({ message: 'internal error' });
     }
   } catch (e) {
     res.status(500).json({ message: e.message });
