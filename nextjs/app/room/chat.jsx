@@ -8,13 +8,38 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Box from '@mui/material/Box';
+import { socket } from '../(utils)/socket';
 //import '../css/components/ChatRoom.css';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
-export const ChatRoom = props => {
+const ChatRoom = props => {
   const [message, setMessage] = useState('');
   const [allMessages, setAllMessages] = useState([]);
-  //const socket = props.socket;
+
+  useEffect(() => {
+    fetchMsg(props.roomId);
+    // successfully joined room
+  }, []);
+
+  // fetch persistent messages from db
+  const fetchMsg = async room => {
+    await fetch('/api/server');
+    /*
+      const url = `http://localhost:3001/room/${room}`;
+      await fetch(url, { method: 'GET' })
+        .then(response => response.json())
+        .then(data => setAllMessages(data.messages))
+        .catch(err => console.log(err));
+        */
+    //const data = await res.json();
+    //setAllMessages(data.messages);
+    //listening for new messages
+    //socket = io();
+    socket.on('receivedMessage', msgData => {
+      console.log('received message', msgData);
+      setAllMessages(prev => [...prev, msgData]);
+    });
+  };
 
   //async to wait for message to be sent
   const sendMessage = async () => {
@@ -26,7 +51,7 @@ export const ChatRoom = props => {
         time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes()
       };
       console.log('sending', msgData);
-      //await socket.emit('sendMessage', msgData);
+      socket.emit('sendMessage', msgData);
       //add message to message list
       setAllMessages(prev => [...prev, msgData]);
       //empties text box
@@ -40,16 +65,7 @@ export const ChatRoom = props => {
     const url = `http://localhost:3001/room/${props.roomId}`;
     await fetch(url, { method: 'DELETE' });
   };
-  // fetch persistent messages from db
-  const fetchMsg = async room => {
-    const url = `http://localhost:3001/room/${room}`;
-    await fetch(url, { method: 'GET' })
-      .then(response => response.json())
-      .then(data => setAllMessages(data.messages))
-      .catch(err => console.log(err));
-    //const data = await res.json();
-    //setAllMessages(data.messages);
-  };
+
   /*
   useEffect(() => {
     //listening for new messages
@@ -57,14 +73,9 @@ export const ChatRoom = props => {
       console.log('received message', msgData);
       setAllMessages(prev => [...prev, msgData]);
     });
-    fetchMsg(props.roomId);
+    //fetchMsg(props.roomId);
   }, [socket]);
   */
-
-  useEffect(() => {
-    fetchMsg(props.roomId);
-    // successfully joined room
-  }, []);
 
   ChatRoom.propTypes = {
     socket: PropTypes.object,
@@ -95,7 +106,9 @@ export const ChatRoom = props => {
                       />
                     </Box>
                   );
-                } else {
+                }
+                //
+                else {
                   if (index !== 0 && allMessages[index - 1].user === allMessages[index].user) {
                     return (
                       <div key={index}>
@@ -148,3 +161,4 @@ export const ChatRoom = props => {
     </div>
   );
 };
+export default ChatRoom;

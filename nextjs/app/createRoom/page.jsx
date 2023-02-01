@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
-//import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -15,6 +15,7 @@ import CardContent from '@mui/material/CardContent';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
+import { socket } from '../(utils)/socket';
 
 // import Grid from '@mui/material/Grid';
 
@@ -25,11 +26,12 @@ const CreateRoom = props => {
   const [userName, setUsername] = useState('');
   const [roomId, setRoomId] = useState('');
   const [error, setError] = React.useState(false);
-  const socket = props.socket;
-  //const navigate = useNavigate();
+  //const socket = props.socket;
+  const router = useRouter();
 
   const joinRoom = async () => {
     let token = '';
+    /*
     if (userName !== '' && roomId !== '') {
       let url = `http://localhost:3001/rtc/${roomId}/publisher/uid/${userName}`;
       await fetch(url, { method: 'GET' })
@@ -52,17 +54,20 @@ const CreateRoom = props => {
           console.log(`created room userName: ${userName}, roomId: ${roomId}`);
           createRoom(token);
         });
-    }
+        */
+    createRoom(token);
   };
 
   const createRoom = async token => {
     await socket.emit('createRoom', roomId);
+    await router.push('/room/' + roomId);
     //await navigate('/room/' + roomId, { state: { rtcToken: token, userName: userName } });
   };
 
   CreateRoom.propTypes = {
     socket: PropTypes.object
   };
+
   return (
     <div className="createContainer">
       <Collapse in={error}>

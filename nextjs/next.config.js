@@ -4,22 +4,16 @@ const nextConfig = {
   experimental: { appDir: true }
 };
 
-/*
-const withTM = require('next-transpile-modules')([
-  '@mui/material',
-  '@mui/system',
-  '@mui/icons-material' // If @mui/icons-material is being used
-]);
+module.exports = {
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // don't resolve 'fs' module on the client to prevent this error on build --> Error: Can't resolve 'fs'
+      config.resolve.fallback = {
+        fs: false
+      };
+    }
 
-module.exports = withTM({
-  webpack: config => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@mui/styled-engine': '@mui/styled-engine-sc'
-    };
     return config;
   }
-});
-*/
-
+};
 module.exports = nextConfig;

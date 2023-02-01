@@ -1,8 +1,8 @@
-'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { ChatRoom } from '../chat';
+import ChatRoom from '../chat';
+
 //import { useLocation } from 'react-router-dom';
 
 //import Video from '../components/Video';
@@ -21,7 +21,7 @@ const Room = ({ params }) => {
     // successfully joined room
     // .then(data => setAllMessages(data.messages));
     // redirect to error if room does not exist
-    //.catch(() => navigate('error'));
+    // .catch(() => navigate('error'));
   };
   const disconnect = async room => {
     console.log(`user ${userName} disconnected`);
@@ -30,17 +30,6 @@ const Room = ({ params }) => {
       .then(response => response.json())
       .catch(e => console.log(e));
   };
-
-  useEffect(() => {
-    //componentDidMount\
-    //joinAttempt(String(id));
-
-    //componentWillUnmount
-    return () => {
-      //console.log('I AM UNMOUNTING');
-      //disconnect(String(id))
-    };
-  }, []);
 
   Room.propTypes = {
     socket: PropTypes.object,

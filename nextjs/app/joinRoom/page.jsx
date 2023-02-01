@@ -15,6 +15,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import * as React from 'react';
+import { socket } from '../(utils)/socket';
 import ScrollToBottom from 'react-scroll-to-bottom';
 //import '../css/pages/JoinRoom.css';
 
@@ -26,11 +27,14 @@ const JoinRoom = props => {
   const [roomId, setRoomId] = useState('');
   const [error, setError] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');
+  const [rooms, setRooms] = useState([]);
   //const socket = props.socket;
   const router = useRouter();
-
   let rtcToken = '';
-  const [rooms, setRooms] = useState([]);
+
+  useEffect(() => {
+    showRooms();
+  }, []);
 
   const joinRoom = async roomID => {
     if (roomID !== '') {
@@ -38,6 +42,7 @@ const JoinRoom = props => {
     }
 
     if (userName !== '' && roomId !== '') {
+      /*
       let url = `http://localhost:3001/rtc/${roomId}/audience/uid/${userName}`;
       await fetch(url, { method: 'GET' })
         .then(response => response.json())
@@ -59,6 +64,9 @@ const JoinRoom = props => {
           setErrorMessage('There was no room with the id');
           console.log('cant there was no room with the id');
         });
+        */
+      //console.log(`joined room userName: ${userName}, roomId: ${roomId}`);
+      join('');
     }
   };
 
@@ -71,9 +79,6 @@ const JoinRoom = props => {
     // redirect to error if room does not exist
     //.catch(() => navigate('error'));
   };
-  useEffect(() => {
-    showRooms();
-  }, []);
 
   // const joinRoomSpecific = (roomId) => {
   //   setRoomId(roomId);
@@ -81,7 +86,7 @@ const JoinRoom = props => {
   // }
 
   const join = async rtcToken => {
-    //await socket.emit('joinRoom', roomId);
+    await socket.emit('joinRoom', roomId);
     await router.push('/room/' + roomId);
     //await navigate('/room/' + roomId, { state: { rtcToken: rtcToken, userName: userName } });
   };
