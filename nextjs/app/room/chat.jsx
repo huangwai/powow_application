@@ -9,32 +9,34 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Box from '@mui/material/Box';
 import { socket } from '../(utils)/socket';
-//import '../css/components/ChatRoom.css';
+import { useSearchParams } from 'next/navigation';
 import ScrollToBottom from 'react-scroll-to-bottom';
+//import '../css/components/ChatRoom.css';
 
 const ChatRoom = props => {
   const [message, setMessage] = useState('');
   const [allMessages, setAllMessages] = useState([]);
+  const searchParams = useSearchParams();
+  const roomId = props.roomId;
+  const userName = searchParams.get('userName');
+
+  ChatRoom.propTypes = {
+    roomId: PropTypes.string
+  };
 
   useEffect(() => {
-    fetchMsg(props.roomId);
-    // successfully joined room
+    fetchMsg(roomId);
   }, []);
 
   // fetch persistent messages from db
   const fetchMsg = async room => {
-    await fetch('/api/server');
-    /*
-      const url = `http://localhost:3001/room/${room}`;
-      await fetch(url, { method: 'GET' })
-        .then(response => response.json())
-        .then(data => setAllMessages(data.messages))
-        .catch(err => console.log(err));
-        */
-    //const data = await res.json();
-    //setAllMessages(data.messages);
+    const url = `http://localhost:3000/api/room/${room}`;
+    await fetch(url, { method: 'GET' })
+      .then(response => response.json())
+      .then(data => setAllMessages(data.messages))
+      .catch(err => console.log(err));
+
     //listening for new messages
-    //socket = io();
     socket.on('receivedMessage', msgData => {
       console.log('received message', msgData);
       setAllMessages(prev => [...prev, msgData]);
@@ -45,8 +47,8 @@ const ChatRoom = props => {
   const sendMessage = async () => {
     if (message !== '') {
       const msgData = {
-        room: props.roomId,
-        user: props.userName,
+        room: roomId,
+        user: userName,
         message: message,
         time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes()
       };
@@ -62,25 +64,8 @@ const ChatRoom = props => {
   // remove previous messages in db and client
   const clearMessage = async () => {
     setAllMessages([]);
-    const url = `http://localhost:3001/room/${props.roomId}`;
+    const url = `http://localhost:3001/room/${roomId}`;
     await fetch(url, { method: 'DELETE' });
-  };
-
-  /*
-  useEffect(() => {
-    //listening for new messages
-    socket.on('receivedMessage', msgData => {
-      console.log('received message', msgData);
-      setAllMessages(prev => [...prev, msgData]);
-    });
-    //fetchMsg(props.roomId);
-  }, [socket]);
-  */
-
-  ChatRoom.propTypes = {
-    socket: PropTypes.object,
-    roomId: PropTypes.string,
-    userName: PropTypes.string
   };
 
   return (
@@ -90,7 +75,7 @@ const ChatRoom = props => {
           <div className="messageScrollContainer">
             <Stack direction="column" spacing={0.3}>
               {allMessages.map((message, index) => {
-                if (message.user === props.userName) {
+                if (message.user === userName) {
                   return (
                     <Box
                       key={index}

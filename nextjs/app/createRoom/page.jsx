@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
@@ -17,31 +16,27 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import { socket } from '../(utils)/socket';
 
-// import Grid from '@mui/material/Grid';
-
 /*
 Create Room page component
  */
-const CreateRoom = props => {
+const CreateRoom = () => {
   const [userName, setUsername] = useState('');
   const [roomId, setRoomId] = useState('');
   const [error, setError] = React.useState(false);
-  //const socket = props.socket;
   const router = useRouter();
 
   const joinRoom = async () => {
     let token = '';
-    /*
     if (userName !== '' && roomId !== '') {
-      let url = `http://localhost:3001/rtc/${roomId}/publisher/uid/${userName}`;
+      let url = `http://localhost:3000/api/rtc/${roomId}/publisher/uid/${userName}`;
       await fetch(url, { method: 'GET' })
         .then(response => response.json())
         .then(data => {
           token = data.rtcToken;
-          console.log('Token12: ' + token);
+          console.log('rtc token: ' + token);
         });
-
-      url = `http://localhost:3001/room/${roomId}`;
+      url = `http://localhost:3000/api/room/${roomId}`;
+      console.log('url: ' + url);
       await fetch(url, { method: 'GET' })
         .then(response => response.json())
         // there was room so send error unable to create room
@@ -54,18 +49,12 @@ const CreateRoom = props => {
           console.log(`created room userName: ${userName}, roomId: ${roomId}`);
           createRoom(token);
         });
-        */
-    createRoom(token);
+    }
   };
 
-  const createRoom = async token => {
-    await socket.emit('createRoom', roomId);
-    await router.push('/room/' + roomId);
-    //await navigate('/room/' + roomId, { state: { rtcToken: token, userName: userName } });
-  };
-
-  CreateRoom.propTypes = {
-    socket: PropTypes.object
+  const createRoom = rtcToken => {
+    socket.emit('createRoom', roomId);
+    router.push(`/room/${roomId}?userName=${userName}&rtcToken=${rtcToken}`);
   };
 
   return (

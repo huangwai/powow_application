@@ -8,24 +8,23 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import { useRouter } from 'next/navigation';
-import PropTypes from 'prop-types';
+import { socket } from '../(utils)/socket';
 
-const ComplexGrid = props => {
-  //const socket = props.socket;
-
+const ComplexGrid = () => {
   let rtcToken = '';
+
   const joinRoom = async () => {
     const roomId = 'public';
     let currentDate = new Date();
     const userName = 'user' + currentDate.getHours() + currentDate.getMinutes() + currentDate.getSeconds();
-    let url = `http://localhost:3001/rtc/${roomId}/audience/uid/${userName}`;
+    let url = `http://localhost:3000/api/rtc/${roomId}/audience/uid/${userName}`;
     await fetch(url, { method: 'GET' })
       .then(response => response.json())
       .then(data => {
         rtcToken = data.rtcToken;
         console.log('Token12: ' + rtcToken);
       });
-    url = `http://localhost:3001/room/${roomId}`;
+    url = `http://localhost:3000/api/room/${roomId}`;
     await fetch(url, { method: 'GET' })
       .then(response => response.json())
       .then(() => {
@@ -35,10 +34,9 @@ const ComplexGrid = props => {
       });
   };
 
-  const join = async (rtcToken, roomId, userName) => {
-    //await socket.emit('joinRoom', roomId);
-    await router.push('/room/' + roomId);
-    //await navigate('/room/' + roomId, { state: { rtcToken: rtcToken, userName: userName } });
+  const join = (rtcToken, roomId, userName) => {
+    socket.emit('joinRoom', roomId);
+    router.push(`/room/${roomId}?userName=${userName}&rtcToken=${rtcToken}`);
   };
 
   const router = useRouter();

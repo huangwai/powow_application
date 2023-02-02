@@ -1,15 +1,9 @@
 import Room from '../../../models/roomModel';
-//const Room = require('../../../models/roomModel');
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
       const { id } = req.query;
-      if (id === 'all') {
-        const rooms = await Room.find();
-        res.status(200).send(rooms);
-        return;
-      }
       const room = await Room.findOne({ id: id });
       res.status(200).send(room);
     } catch (e) {

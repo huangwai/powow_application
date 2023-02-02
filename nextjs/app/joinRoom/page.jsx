@@ -1,11 +1,11 @@
 'use client';
+import * as React from 'react';
 import { useState, useEffect } from 'react';
 import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
-import PropTypes from 'prop-types';
 import { useRouter } from 'next/navigation';
 import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
@@ -14,7 +14,6 @@ import CardContent from '@mui/material/CardContent';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import * as React from 'react';
 import { socket } from '../(utils)/socket';
 import ScrollToBottom from 'react-scroll-to-bottom';
 //import '../css/pages/JoinRoom.css';
@@ -22,13 +21,12 @@ import ScrollToBottom from 'react-scroll-to-bottom';
 /*
 Join Room page component
  */
-const JoinRoom = props => {
+const JoinRoom = () => {
   const [userName, setUsername] = useState('');
   const [roomId, setRoomId] = useState('');
   const [error, setError] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');
   const [rooms, setRooms] = useState([]);
-  //const socket = props.socket;
   const router = useRouter();
   let rtcToken = '';
 
@@ -42,15 +40,15 @@ const JoinRoom = props => {
     }
 
     if (userName !== '' && roomId !== '') {
-      /*
-      let url = `http://localhost:3001/rtc/${roomId}/audience/uid/${userName}`;
+      let url = `http://localhost:3000/api/rtc/${roomId}/audience/uid/${userName}`;
       await fetch(url, { method: 'GET' })
         .then(response => response.json())
         .then(data => {
           rtcToken = data.rtcToken;
-          console.log('Token12: ' + rtcToken);
+          console.log('rtc token: ' + rtcToken);
         });
-      url = `http://localhost:3001/room/${roomId}`;
+
+      url = `http://localhost:3000/api/room/${roomId}`;
       await fetch(url, { method: 'GET' })
         .then(response => response.json())
         .then(() => {
@@ -64,14 +62,13 @@ const JoinRoom = props => {
           setErrorMessage('There was no room with the id');
           console.log('cant there was no room with the id');
         });
-        */
-      //console.log(`joined room userName: ${userName}, roomId: ${roomId}`);
-      join('');
+
+      console.log(`joined room userName: ${userName}, roomId: ${roomId}`);
     }
   };
 
   const showRooms = async () => {
-    const url = `http://localhost:3001/room/all`;
+    const url = `http://localhost:3000/api/room/all`;
     await fetch(url, { method: 'GET' })
       .then(response => response.json())
       // successfully joined room
@@ -80,20 +77,11 @@ const JoinRoom = props => {
     //.catch(() => navigate('error'));
   };
 
-  // const joinRoomSpecific = (roomId) => {
-  //   setRoomId(roomId);
-  //   joinRoom()
-  // }
-
-  const join = async rtcToken => {
-    await socket.emit('joinRoom', roomId);
-    await router.push('/room/' + roomId);
-    //await navigate('/room/' + roomId, { state: { rtcToken: rtcToken, userName: userName } });
+  const join = rtcToken => {
+    socket.emit('joinRoom', roomId);
+    router.push(`/room/${roomId}?userName=${userName}&rtcToken=${rtcToken}`);
   };
 
-  JoinRoom.propTypes = {
-    socket: PropTypes.object
-  };
   return (
     <div className="joinContainer">
       <Collapse in={error}>

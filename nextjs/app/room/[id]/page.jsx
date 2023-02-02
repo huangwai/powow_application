@@ -1,19 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
 import ChatRoom from '../chat';
-
-//import { useLocation } from 'react-router-dom';
-
-//import Video from '../components/Video';
+import Video from '../video';
 //import '../css/pages/PublicChat.css';
 
 const Room = ({ params }) => {
   const id = params.id;
-
-  //const { id } = useParams();
-  // const { state } = useLocation();
-  //const { rtcToken, userName } = state;
 
   const joinAttempt = async room => {
     const url = `http://localhost:3001/room/${room}`;
@@ -31,17 +23,12 @@ const Room = ({ params }) => {
       .catch(e => console.log(e));
   };
 
-  Room.propTypes = {
-    socket: PropTypes.object,
-    userName: PropTypes.string
-  };
-
   return (
     <div className="public-chat">
       <div className="one">
-        {/* <Video socket={props.socket} userName={userName} roomId={String(id)} rtcToken={rtcToken} /> */}
+        <Video roomId={String(id)} />
       </div>
-      <ChatRoom userName={'temp'} roomId={String(id)} />
+      <ChatRoom roomId={String(id)} />
     </div>
   );
 };
