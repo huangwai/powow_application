@@ -8,14 +8,19 @@ dotenv.config();
 const APP_ID = process.env.APP_ID;
 const APP_CERTIFICATE = process.env.APP_CERTIFICATE;
 
-const nocache = (_, resp, next) => {
+router.get('/:channel/:role/:tokentype/:uid', (req, resp) => {
+  nocache(req, resp);
+  generateRTCToken(req, resp);
+});
+
+function nocache(_, resp) {
   resp.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
   resp.header('Expires', '-1');
   resp.header('Pragma', 'no-cache');
-  next();
-};
+  //next();
+}
 
-const generateRTCToken = (req, resp) => {
+function generateRTCToken(req, resp) {
   // set response header
   resp.header('Access-Control-Allow-Origin', '*');
   // get channel name
@@ -58,8 +63,6 @@ const generateRTCToken = (req, resp) => {
   }
   // return the token
   return resp.json({ rtcToken: token });
-};
-
-router.get('/:channel/:role/:tokentype/:uid', nocache, generateRTCToken);
+}
 
 module.exports = router;

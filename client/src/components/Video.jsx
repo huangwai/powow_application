@@ -18,6 +18,7 @@ const client = AgoraRTC.createClient({
 const VideoChat = props => {
   const [users, setUsers] = useState([]);
   const [localTracks, setLocalTracks] = useState([]);
+  let tracks;
 
   VideoChat.propTypes = {
     socket: PropTypes.object,
@@ -40,7 +41,7 @@ const VideoChat = props => {
     }
 
     if (mediaType === 'audio') {
-      user.audioTrack.play()
+      user.audioTrack.play();
     }
   };
 
@@ -55,7 +56,8 @@ const VideoChat = props => {
     client
       .join(APP_ID, CHANNEL, TOKEN, props.userName)
       .then(uid => Promise.all([AgoraRTC.createMicrophoneAndCameraTracks(), uid]))
-      .then(([tracks, uid]) => {
+      .then(([tracks1, uid]) => {
+        tracks = tracks1;
         const [audioTrack, videoTrack] = tracks;
         setLocalTracks(tracks);
         setUsers(previousUsers => [
@@ -76,7 +78,6 @@ const VideoChat = props => {
       }
       client.off('user-published', handleUserJoined);
       client.off('user-left', handleUserLeft);
-      // eslint-disable-next-line no-undef
       client.unpublish(tracks).then(() => client.leave());
     };
   }, []);
