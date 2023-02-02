@@ -1,5 +1,6 @@
 import { Server } from 'socket.io';
 import { createServer } from 'http';
+import mongoose from 'mongoose';
 
 export default function socket(req, res) {
   // It means that socket server was already initialized
@@ -9,6 +10,15 @@ export default function socket(req, res) {
     return;
   }
   console.log(`Created server running on port 3000`);
+
+  mongoose
+    .connect(process.env.MONGO_DB, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    })
+    .then(() => console.log(`Connected to MongoDB at ${process.env.MONGO_DB}`))
+    .catch(error => console.log(error));
+
   const io = new Server(res.socket.server);
   res.socket.server.io = io;
 
