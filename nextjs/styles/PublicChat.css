@@ -1,0 +1,10 @@
+.public-chat {
+    display: grid;
+    grid-template-columns: 75% auto;
+    padding: 10px;
+}
+
+.one {
+    justify-self: center;
+    align-self: center;
+}

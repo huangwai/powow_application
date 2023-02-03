@@ -7,8 +7,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-
-//import '../css/pages/Home.css';
+import '../styles/Home.css';
 
 /*
 Join Room page component

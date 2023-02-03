@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Header from './header';
+import '../styles/App.css';
 
 export default function RootLayout({ children }) {
   fetch('http://localhost:3000/api/server');
@@ -7,8 +8,10 @@ export default function RootLayout({ children }) {
     <html>
       <head />
       <body>
-        <Header />
-        {children}
+        <div className="App">
+          <Header />
+          {children}
+        </div>
       </body>
     </html>
   );

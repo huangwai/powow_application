@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 import { socket } from '../(utils)/socket';
 import { useSearchParams } from 'next/navigation';
 import ScrollToBottom from 'react-scroll-to-bottom';
-//import '../css/components/ChatRoom.css';
+import '../../styles/ChatRoom.css';
 
 const ChatRoom = props => {
   const [message, setMessage] = useState('');

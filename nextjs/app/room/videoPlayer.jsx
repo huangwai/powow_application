@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-//import '../css/components/VideoPlayer.css';
+import '../../styles/VideoPlayer.css';
 
 export const VideoPlayer = ({ user }) => {
   const ref = useRef();

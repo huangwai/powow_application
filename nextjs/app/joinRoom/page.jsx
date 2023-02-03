@@ -16,7 +16,7 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import { socket } from '../(utils)/socket';
 import ScrollToBottom from 'react-scroll-to-bottom';
-//import '../css/pages/JoinRoom.css';
+import '../../styles/JoinRoom.css';
 
 /*
 Join Room page component

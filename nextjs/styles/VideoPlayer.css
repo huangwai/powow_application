@@ -1,0 +1,7 @@
+.video-player {
+  border-radius: 10%;
+  width: 80em;
+  height: 25em;
+  max-width: 100%;
+  overflow: hidden;
+}

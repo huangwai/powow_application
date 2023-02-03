@@ -6,12 +6,10 @@ import { useSearchParams } from 'next/navigation';
 import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-//import '../css/components/VideoChat.css';
-
+import '../../styles/VideoChat.css';
 //const uuid = require("uuid/v4")
 
 const APP_ID = '0bb291f858984709810afc67fd472532'; //process.env.APP_ID;
-
 const client = AgoraRTC.createClient({
   mode: 'rtc',
   codec: 'vp8'

@@ -1,8 +1,8 @@
 // 404 page design from https://codepen.io/genarocolusso/pen/XWbGMLp
 
 import React from 'react';
-//import '../css/pages/NoPages.css';
-const NoPage = () => {
+import '../styles/NoPages.css';
+export default function NotFound() {
   return (
     <div className="main" style={{ display: 'flex', justifyContent: 'center' }}>
       <svg
@@ -94,5 +94,4 @@ const NoPage = () => {
       {/* <HomeButton /> */}
     </div>
   );
-};
-export default NoPage;
+}

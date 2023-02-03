@@ -1,0 +1,5 @@
+.rooms {
+    display: flex;
+    justify-content: space-between;
+    color: black;
+  }

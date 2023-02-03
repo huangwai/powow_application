@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ChatRoom from '../chat';
 import Video from '../video';
-//import '../css/pages/PublicChat.css';
+import '../../../styles/PublicChat.css';
 
 const Room = ({ params }) => {
   const id = params.id;
