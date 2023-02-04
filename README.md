@@ -1,19 +1,3 @@
-## Welcome to POWOW Application
-### Video Chatting made for those who want to connect across the world.
-#### Made in React.js, using Next.js, while incorperating Material UI.
-
-### Small Description
-For our Capstone Project, we decided to go off the preexisting Web Chatting Application, called Omegle, and expand more to allow for user bonding and authenication. In POWOW, our webchat application, we decided to elaborate more on Omegle for our project.
-
-### Features in POWOW
-1. Create your own video rooms to conversate with others.
-2. Join preexisting rooms with Room ID's.
-2. Each videoroom includes a chat that is only accessible while in the video room.
-3. Minimal design choice to allow for easy readiblitiy.
-4. Utilized Agora to offer automated token generation for video streaming authentication.
-5. More than 2 users are able to join a video room & chat through audio or text.
-
-
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
